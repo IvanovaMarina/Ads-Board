@@ -9,40 +9,30 @@ import java.util.Objects;
 
 @Component
 public class ImageUtil {
-    public static final int BYTES_TO_WRITE = 1000;
 
-    //public static final int BUFFER_SIZE = 1000;
-    //private final byte[] buffer = new byte[BUFFER_SIZE];
 
     /**
      * @param imagePath is absolute path to image
-     * @return amount of written bytes
+     * @param imageBytes is binary image
      */
-    public int savePicture(byte[] imageBytes, String imagePath) throws IOException{
+    public void savePicture(byte[] imageBytes, String imagePath) throws IOException{
         Objects.requireNonNull(imageBytes);
         Objects.requireNonNull(imagePath);
 
         File image = new File(imagePath);
-        int offset = 0;
+
 
         boolean isCreated = image.createNewFile();
         if(!isCreated){
             throw new IOException("File has not bean created.");
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(image);
+        OutputStream fileOutputStream = new FileOutputStream(image);
 
-
-        while(offset < imageBytes.length){
-            int writeBytes = Math.min(imageBytes.length - offset, BYTES_TO_WRITE);
-            fileOutputStream.write(imageBytes, offset, writeBytes);
-            offset += writeBytes;
-        }
-
+        fileOutputStream.write(imageBytes);
 
         Objects.requireNonNull(fileOutputStream);
         fileOutputStream.close();
 
-        return offset;
     }
 
     public byte[] getImage(String imagePath) throws IOException{

@@ -20,7 +20,9 @@ public class UserView extends ResourceSupport{
     private String email;
     @JsonProperty(value = "region")
     private Integer regionId;
-    private String imageBytesText;
+    @JsonProperty(value = "image")
+    private String imageBase64;
+    private boolean isAdmin;
 
 
     public UserView(){}
@@ -33,6 +35,7 @@ public class UserView extends ResourceSupport{
         this.phone = user.getPhone();
         this.email = user.getEmail();
         this.regionId = user.getRegion().getId();
+        this.isAdmin = user.isAdmin();
     }
 
     public Integer getUserId(){
@@ -92,12 +95,20 @@ public class UserView extends ResourceSupport{
         this.regionId = regionId;
     }
 
-    public String getImageBytesText() {
-        return imageBytesText;
+    public String getImageBase64() {
+        return imageBase64;
     }
 
-    public void setImageBytesText(String imageBytesText) {
-        this.imageBytesText = imageBytesText;
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     public User toUser(){
@@ -113,6 +124,7 @@ public class UserView extends ResourceSupport{
         user.setRegistrationDate(this.registrationDate);
         user.setPhone(this.phone);
         user.setEmail(this.email);
+        user.setAdmin(this.isAdmin);
 
         region.setId(this.regionId);
 

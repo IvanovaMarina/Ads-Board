@@ -37,4 +37,5 @@ public class DetailedUserView extends UserView{
         user.setPassword(this.getPassword());
         return user;
     }
+
 }
