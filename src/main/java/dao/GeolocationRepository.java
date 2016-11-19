@@ -28,18 +28,19 @@ public class GeolocationRepository {
                 countries.add(country);
             }
         }catch (SQLException exception){
-            //TODO: handle SQLException in GeolocationRepository
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return countries;
     }
 
-    public List<Region> getRegions(Integer id){
+    public List<Region> getRegions(Integer countryId){
         List<Region> regions = new ArrayList<>();
         try{
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT id_region, name FROM region " +
                     "WHERE id_country = ?");
-            statement.setInt(1, id);
+            statement.setInt(1, countryId);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
                 Region region = new Region();
@@ -47,8 +48,9 @@ public class GeolocationRepository {
                 region.setName(resultSet.getString("name"));
                 regions.add(region);
             }
-        }catch(SQLException ex){
-            //TODO: handle SQLException in GeolocationRepository
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return regions;
     }

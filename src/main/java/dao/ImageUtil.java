@@ -38,7 +38,6 @@ public class ImageUtil {
     public byte[] getImage(String imagePath) throws IOException{
         File file = new File(imagePath);
         byte[] imageBytes = Files.readAllBytes(file.toPath());
-        //TODO: доделать
         return imageBytes;
     }
 }

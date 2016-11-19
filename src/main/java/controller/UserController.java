@@ -4,7 +4,8 @@ package main.java.controller;
 import main.java.entity.User;
 import main.java.service.UserNotFoundException;
 import main.java.service.UserService;
-import main.java.view.DetailedUserView;
+import main.java.view.RequestUserView;
+import main.java.view.ResponseUserView;
 import main.java.view.UserView;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public UserView register(@RequestBody DetailedUserView userView){
+    public UserView register(@RequestBody RequestUserView userView){
         User newUser = userService.add(userView.toUser());
 
         String[] imageBase64parts = userView.getImageBase64().split("base64,");
@@ -35,7 +36,7 @@ public class UserController {
         byte[] imageBytes = Base64.decodeBase64(imageBase64parts[1]);
         userService.saveImage(newUser.getId(), imageBytes);
 
-        UserView responseUserView = new UserView(newUser);
+        UserView responseUserView = new ResponseUserView(newUser);
 
         Link userLink = ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
@@ -67,7 +68,18 @@ public class UserController {
         if(user == null){
             throw new UserNotFoundException("Wrong authentication data.");
         }
-        return new UserView(user);
+
+        UserView userView = new ResponseUserView(user);
+        Link userLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(UserController.class).getOneUser(user.getId()))
+                .withSelfRel();
+
+        Link imageLink = new Link(userLink.getHref() + "/image", "image");
+
+        userView.add(userLink);
+        userView.add(imageLink);
+        return userView;
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)

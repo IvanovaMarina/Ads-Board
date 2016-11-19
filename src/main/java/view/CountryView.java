@@ -11,7 +11,6 @@ public class CountryView extends ResourceSupport{
 
     @JsonProperty(value = "id")
     private Integer countryId;
-
     private String name;
 
     public CountryView(){}

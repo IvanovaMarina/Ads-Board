@@ -1,10 +1,10 @@
 package main.java.controller;
 
-import main.java.dao.GeolocationRepository;
+
+import main.java.service.GeolocationService;
 import main.java.view.CountryView;
 import main.java.view.RegionView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpHeaders;
@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 public class GeolocationController {
 
     @Autowired
-    private GeolocationRepository geolocationRepository;
+    private GeolocationService geolocationService;
 
     @RequestMapping(value = "/countries")
     public Resources<CountryView> getAllCountries(){
 
-        List<CountryView> countryViewList = geolocationRepository.getAllCountries().stream()
+        List<CountryView> countryViewList = geolocationService.getAllCountries().stream()
                 .map(country -> {
                     CountryView countryView = new CountryView(country);
                     countryView.add(ControllerLinkBuilder
@@ -59,7 +59,7 @@ public class GeolocationController {
 
     @RequestMapping(value = "/countries/{countryId}/regions")
     public Resources<RegionView> getRegions(@PathVariable Integer countryId){
-        List<RegionView> regions = geolocationRepository.getRegions(countryId).stream()
+        List<RegionView> regions = geolocationService.getRegions(countryId).stream()
                 .map(region->{
                     return new RegionView(region);
                 }).collect(Collectors.toList());

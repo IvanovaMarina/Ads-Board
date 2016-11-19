@@ -15,14 +15,10 @@ public class UserView extends ResourceSupport{
     private Integer userId;
     private String name;
     private String surname;
-    private LocalDateTime registrationDate;
+
     private String phone;
     private String email;
-    @JsonProperty(value = "region")
-    private Integer regionId;
-    @JsonProperty(value = "image")
-    private String imageBase64;
-    private boolean isAdmin;
+
 
 
     public UserView(){}
@@ -31,11 +27,8 @@ public class UserView extends ResourceSupport{
         this.userId = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
-        this.registrationDate = user.getRegistrationDate();
         this.phone = user.getPhone();
         this.email = user.getEmail();
-        this.regionId = user.getRegion().getId();
-        this.isAdmin = user.isAdmin();
     }
 
     public Integer getUserId(){
@@ -63,14 +56,6 @@ public class UserView extends ResourceSupport{
     }
 
 
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -87,46 +72,15 @@ public class UserView extends ResourceSupport{
         this.email = email;
     }
 
-    public Integer getRegionId() {
-        return regionId;
-    }
-
-    public void setRegionId(Integer regionId) {
-        this.regionId = regionId;
-    }
-
-    public String getImageBase64() {
-        return imageBase64;
-    }
-
-    public void setImageBase64(String imageBase64) {
-        this.imageBase64 = imageBase64;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
     public User toUser(){
         User user = new User();
-        Region region = new Region();
-        Country country  = new Country();
-        region.setCountry(country);
-        user.setRegion(region);
+
 
         user.setId(this.userId);
         user.setName(this.name);
         user.setSurname(this.surname);
-        user.setRegistrationDate(this.registrationDate);
         user.setPhone(this.phone);
         user.setEmail(this.email);
-        user.setAdmin(this.isAdmin);
-
-        region.setId(this.regionId);
 
         return user;
     }

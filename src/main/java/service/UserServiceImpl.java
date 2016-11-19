@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class UserServiceImpl implements UserService{
         validateToRegister(user);
         avoidUserDuplication(user.getLogin(), user.getPassword());
 
-        String encryptedLogin = new String(DigestUtils.sha1(user.getLogin()));
-        String encryptedPassword = new String(DigestUtils.sha1(user.getPassword()));
+        String encryptedLogin = encodeSHA1(user.getLogin());
+        String encryptedPassword = encodeSHA1(user.getPassword());
         user.setLogin(encryptedLogin);
         user.setPassword(encryptedPassword);
 
@@ -64,8 +65,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUser(String login, String password) {
-        String encryptedLogin = new String(DigestUtils.sha1(login));
-        String encryptedPassword = new String(DigestUtils.sha1(password));
+        String encryptedLogin = encodeSHA1(login);
+        String encryptedPassword = encodeSHA1(password);
         return userRepository.getUser(encryptedLogin, encryptedPassword);
     }
 
@@ -101,7 +102,7 @@ public class UserServiceImpl implements UserService{
             imageUtil.savePicture(imageBytes, user.getPhotoPath());
         }catch(IOException ex){
             //TODO: обработать
-            System.out.println(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -114,6 +115,7 @@ public class UserServiceImpl implements UserService{
             imageBytes = imageUtil.getImage(user.getPhotoPath());
         }catch(IOException ex){
             //TODO: обработать
+            ex.printStackTrace();
         }
         return imageBytes;
     }
@@ -126,11 +128,17 @@ public class UserServiceImpl implements UserService{
     }
 
     private void avoidUserDuplication(String login, String password){
-        String encryptedLogin = new String(DigestUtils.sha1(login));
-        String encryptedPassword = new String(DigestUtils.sha1(password));
+        String encryptedLogin = encodeSHA1(login);
+        String encryptedPassword = encodeSHA1(password);
         User user = userRepository.getUser(encryptedLogin, encryptedPassword);
         if(user != null){
             throw new UserAlreadyExistingException();
         }
+    }
+
+    private String encodeSHA1(String text){
+
+            return new String(DigestUtils.sha1Hex(text));
+
     }
 }

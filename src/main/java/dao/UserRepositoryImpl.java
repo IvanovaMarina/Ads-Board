@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User add(User user) {
-        //TODO:сделать проверку на наличие такого логина
+
         try{
             final String query =
                     "insert into user(name, surname, password, login, path_to_photo, " +
@@ -42,17 +42,33 @@ public class UserRepositoryImpl implements UserRepository{
 
             statement.execute();
 
-            Statement selectIdstatement = connection.createStatement();
-            String selectIdquery = "SELECT id_user FROM user " +
+            Statement selectIdStatement = connection.createStatement();
+            String selectIdQuery =
+                    "SELECT id_user FROM user " +
                     "WHERE login = \'" + user.getLogin() +"\'";
-            ResultSet userIdResultSet = selectIdstatement.executeQuery(selectIdquery);
+            ResultSet userIdResultSet = selectIdStatement.executeQuery(selectIdQuery);
             userIdResultSet.next();
             user.setId(userIdResultSet.getInt("id_user"));
-        }catch(SQLException ex){
-            //TODO: handle
-            System.out.println(ex.getMessage());
-            System.out.println(ex.getErrorCode());
-            System.out.println(ex.getLocalizedMessage());
+
+            String selectGeolocationQuery =
+                    "SELECT region.id_region AS region_id, region.name AS region_name,\n" +
+                    "\tcountry.id_country AS country_id, country.name AS country_name\n" +
+                    "FROM region\n" +
+                    "INNER JOIN country\n" +
+                    "\tON region.id_country = country.id_country\n" +
+                    "WHERE region.id_region = ?";
+            PreparedStatement selectGeolocationStatement = connection.prepareStatement(selectGeolocationQuery);
+            selectGeolocationStatement.setInt(1, user.getRegion().getId());
+            ResultSet geolocationResultSet = selectGeolocationStatement.executeQuery();
+            geolocationResultSet.next();
+            user.getRegion().setId(geolocationResultSet.getInt("region_id"));
+            user.getRegion().setName(geolocationResultSet.getString("region_name"));
+            user.getRegion().getCountry().setId(geolocationResultSet.getInt("country_id"));
+            user.getRegion().getCountry().setName(geolocationResultSet.getString("country_name"));
+
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return user;
     }
@@ -85,8 +101,9 @@ public class UserRepositoryImpl implements UserRepository{
             statement.setInt(7, user.getId());
 
             statement.execute();
-        }catch(SQLException ex){
-            //TODO: обработать
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return user;
     }
@@ -144,11 +161,9 @@ public class UserRepositoryImpl implements UserRepository{
                 user.setRegion(region);
                 return user;
             }
-        }catch(SQLException ex){
-            //TODO: обработать
-            System.out.println(ex.getMessage());
-            System.out.println(ex.getErrorCode());
-            System.out.println(ex.getLocalizedMessage());
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return null;
     }
@@ -202,11 +217,9 @@ public class UserRepositoryImpl implements UserRepository{
                 user.setRegion(region);
                 return user;
             }
-        }catch(SQLException ex){
-            //TODO: обработать
-            System.out.println(ex.getMessage());
-            System.out.println(ex.getErrorCode());
-            System.out.println(ex.getLocalizedMessage());
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
         }
         return null;
     }
