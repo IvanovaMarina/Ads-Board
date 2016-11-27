@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,11 +19,11 @@ public class UserServiceImpl implements UserService{
     private static String IMAGE_PATH = "C:/user_images/";
 
     @Autowired
-    ImageUtil imageUtil;
+    private ImageUtil imageUtil;
 
     @Autowired
     @Qualifier("userRepository")
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public User add(User user) {
@@ -72,6 +71,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean validateToRegister(User user) {
+        //TODO: сделать валидацию юзера и кидать исключение
         return true;
     }
 

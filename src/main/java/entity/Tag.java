@@ -1,16 +1,19 @@
 package main.java.entity;
 
 
-public class Marker {
 
+
+public class Tag {
     private Integer id;
     private String name;
+    private Integer advertsAmount;
 
-    public Marker(){}
+    public Tag(){}
 
-    public Marker(Integer id, String name) {
+    public Tag(Integer id, String name, Integer advertsAmount) {
         this.id = id;
         this.name = name;
+        this.advertsAmount = advertsAmount;
     }
 
     public Integer getId() {
@@ -29,11 +32,20 @@ public class Marker {
         this.name = name;
     }
 
+    public Integer getAdvertsAmount() {
+        return advertsAmount;
+    }
+
+    public void setAdvertsAmount(Integer advertsAmount) {
+        this.advertsAmount = advertsAmount;
+    }
+
     @Override
     public String toString() {
-        return "Marker{" +
+        return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", advertsAmount=" + advertsAmount +
                 '}';
     }
 }

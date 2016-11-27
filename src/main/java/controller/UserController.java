@@ -23,7 +23,7 @@ public class UserController {
 
     @Autowired
     @Qualifier("userService")
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST)
     public UserView register(@RequestBody RequestUserView userView){

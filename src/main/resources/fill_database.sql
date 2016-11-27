@@ -1,0 +1,16 @@
+INSERT INTO `adverts`.`category` (`name`) VALUES ('Автомобили');
+INSERT INTO `adverts`.`category` (`name`) VALUES ('Бытовая техника');
+INSERT INTO `adverts`.`country` (`name`) VALUES ('Украина');
+INSERT INTO `adverts`.`country` (`name`) VALUES ('Казахстан');
+INSERT INTO `adverts`.`currency` (`abbreviation`) VALUES ('грн');
+INSERT INTO `adverts`.`currency` (`abbreviation`) VALUES ('руб');
+INSERT INTO `adverts`.`currency` (`abbreviation`) VALUES ('долл');
+INSERT INTO `adverts`.`marker` (`name`) VALUES ('Срочно');
+INSERT INTO `adverts`.`marker` (`name`) VALUES ('Дешево');
+INSERT INTO `adverts`.`region` (`name`, `id_country`) VALUES ('Одесская область', '1');
+INSERT INTO `adverts`.`region` (`name`, `id_country`) VALUES ('Винницкая область', '1');
+INSERT INTO `adverts`.`subcategory` (`name`, `id_cat`) VALUES ('Легковые', '1');
+INSERT INTO `adverts`.`subcategory` (`name`, `id_cat`) VALUES ('Грузовики', '1');
+INSERT INTO `adverts`.`subcategory` (`name`, `id_cat`) VALUES ('Прицепы', '1');
+insert into tag(name) values("б/у");
+insert into tag(name) values("зарубежный");

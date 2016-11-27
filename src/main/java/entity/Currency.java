@@ -27,4 +27,12 @@ public class Currency {
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "id=" + id +
+                ", abbreviation='" + abbreviation + '\'' +
+                '}';
+    }
 }
