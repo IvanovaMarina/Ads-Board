@@ -3,11 +3,6 @@ package test.java;
 
 import main.java.dao.AdvertRepositoryImpl;
 import main.java.dao.ConnectionManager;
-import main.java.entity.*;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdvertRepositoryTest {
     public static void main(String[] args) {
@@ -35,6 +30,6 @@ public class AdvertRepositoryTest {
 
         Advert advertResult = advertRepository.add(advert);
         System.out.println(advertResult.getId());*/
-        System.out.println(advertRepository.getAdvert(4));
+        System.out.println(advertRepository.getOne(4));
     }
 }

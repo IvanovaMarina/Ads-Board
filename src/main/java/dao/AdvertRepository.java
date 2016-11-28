@@ -6,5 +6,6 @@ import main.java.entity.Advert;
 public interface AdvertRepository {
     Advert add(Advert advert);
     Advert update(Advert advert);
-    Advert getAdvert(Integer id);
+    Advert getOne(Integer id);
+    //TODO: при удалении advert удалять записи из adver_tag
 }

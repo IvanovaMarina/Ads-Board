@@ -20,6 +20,7 @@ public class AdvertRepositoryImpl implements AdvertRepository{
 
     @Override
     public Advert add(Advert advert) {
+        Advert addedAdvert = null;
         try{
             final String addProcedureQuery = "CALL add_advert(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(addProcedureQuery);
@@ -42,22 +43,26 @@ public class AdvertRepositoryImpl implements AdvertRepository{
                             "WHERE title = \'" + advert.getTitle() + "\' AND add_time = " + addTime;
             ResultSet advertIdResultSet = selectIdStatement.executeQuery(selectIdQuery);
             advertIdResultSet.next();
-            advert.setId(advertIdResultSet.getInt("id_ad"));
+            //advert.setId(advertIdResultSet.getInt("id_ad"));
+            Integer addedAdvertId = advertIdResultSet.getInt("id_ad");
 
             final String tagBindingQuery = "insert into advert_tag(id_ad, id_tag) values(?, ?)";
             PreparedStatement tagBindingStatement = connection.prepareStatement(tagBindingQuery);
             for(Tag tag: advert.getTags()){
-                tagBindingStatement.setInt(1, advert.getId());
+                tagBindingStatement.setInt(1, addedAdvertId);
                 tagBindingStatement.setInt(2, tag.getId());
                 tagBindingStatement.execute();
                 tagBindingStatement.clearParameters();
             }
 
+            addedAdvert = getOne(addedAdvertId);
+
         }catch(SQLException exception){
             exception.printStackTrace();
             throw new DBAccessException(exception.getMessage());
         }
-        return advert;
+        //return advert;
+        return addedAdvert;
     }
 
     @Override
@@ -113,7 +118,7 @@ public class AdvertRepositoryImpl implements AdvertRepository{
     }
 
     @Override
-    public Advert getAdvert(Integer id) {
+    public Advert getOne(Integer id) {
         Advert advert = new Advert();
         User owner = new User();
         Subcategory subcategory = new Subcategory();

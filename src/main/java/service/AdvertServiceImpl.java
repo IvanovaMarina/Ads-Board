@@ -36,6 +36,11 @@ public class AdvertServiceImpl implements AdvertService{
         return advertRepository.add(advert);
     }
 
+    @Override
+    public Advert getOne(Integer id) {
+        return advertRepository.getOne(id);
+    }
+
     private boolean validate(Advert advert) {
         //TODO: сделать валидацию объявления и кидать исключение
         return true;
@@ -44,7 +49,7 @@ public class AdvertServiceImpl implements AdvertService{
     @Override
     public void saveImage(Integer advertId, byte[] bytes) {
         checkAdvertExisting(advertId);
-        Advert advert = advertRepository.getAdvert(advertId);
+        Advert advert = advertRepository.getOne(advertId);
 
         advert.setPhotoPath(IMAGE_PATH + advert.getId() + ".png");
         advertRepository.update(advert);
@@ -63,7 +68,16 @@ public class AdvertServiceImpl implements AdvertService{
 
     @Override
     public byte[] getImage(Integer advertId) {
-        return new byte[0];
+        checkAdvertExisting(advertId);
+        Advert advert = advertRepository.getOne(advertId);
+        byte[] imageBytes =  null;
+        try {
+            imageBytes = imageUtil.getImage(advert.getPhotoPath());
+        }catch(IOException ex){
+            //TODO: обработать
+            ex.printStackTrace();
+        }
+        return imageBytes;
     }
 
     public void setAdvertRepository(AdvertRepository advertRepository) {
