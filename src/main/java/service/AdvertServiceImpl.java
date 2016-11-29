@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service("advertService")
 public class AdvertServiceImpl implements AdvertService{
@@ -90,6 +91,29 @@ public class AdvertServiceImpl implements AdvertService{
             ex.printStackTrace();
         }
         return imageBytes;
+    }
+
+    @Override
+    public List<Advert> getAdverts(int page, int size) {
+        if(page < 1){
+            throw new PageException("Page number must be more than 0.");
+        }
+        if(size < 1){
+            throw new PageException("Page size must be more than 0.");
+        }
+        int limit = size;
+        int offset = (page - 1) * size;
+        return advertRepository.getAdverts(limit, offset);
+    }
+
+    @Override
+    public int getLastPage(int pageSize) {
+        double fractionalLastPage = advertRepository.count()*1.0/pageSize;
+        int lastPage = (int) fractionalLastPage;
+        if(fractionalLastPage > lastPage){
+            lastPage += 1;
+        }
+        return lastPage;
     }
 
     public void setAdvertRepository(AdvertRepository advertRepository) {
