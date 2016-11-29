@@ -5,6 +5,7 @@ import main.java.dao.AdvertRepository;
 import main.java.dao.ImageUtil;
 import main.java.dao.TagRepository;
 import main.java.entity.Advert;
+import main.java.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class AdvertServiceImpl implements AdvertService{
     @Qualifier("advertRepository")
     private AdvertRepository advertRepository;
 
+
     @Autowired
     private TagRepository tagRepository;
 
@@ -32,6 +34,16 @@ public class AdvertServiceImpl implements AdvertService{
         validate(advert);
 
         advert.setAddTime(LocalDateTime.now());
+
+        //adding tags, which are not existing
+        //setting id for tags, to add them to advert in DB
+        for(Tag tag: advert.getTags()){
+            boolean exists = tagRepository.getTag(tag.getName()) != null;
+            if(!exists){
+                tagRepository.addTag(tag);
+            }
+            tag.setId(tagRepository.getTag(tag.getName()).getId());
+        }
 
         return advertRepository.add(advert);
     }

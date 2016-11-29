@@ -212,8 +212,8 @@ public class AdvertView extends ResourceSupport{
         User owner = new User();
         Subcategory subcategory = new Subcategory();
         Category category = new Category();
-        Region region = new Region();
-        Country country = new Country();
+        //Region region = new Region();
+        //Country country = new Country();
         Marker marker = new Marker();
         List<Tag> tags = new ArrayList<>();
         Currency currency = new Currency();
@@ -221,8 +221,8 @@ public class AdvertView extends ResourceSupport{
         advert.setOwner(owner);
         subcategory.setCategory(category);
         advert.setSubcategory(subcategory);
-        region.setCountry(country);
-        owner.setRegion(region);
+        //region.setCountry(country);
+        //owner.setRegion(region);
         advert.setMarker(marker);
         advert.setTags(tags);
         advert.setCurrency(currency);
@@ -230,12 +230,12 @@ public class AdvertView extends ResourceSupport{
         advert.setTitle(this.getTitle());
         advert.setDescription(this.getDescription());
         owner.setId(this.getUserView().getUserId());
-        region.setId(this.getRegionView().getRegionId());
+        //region.setId(this.getRegionView().getRegionId());
         subcategory.setId(this.getSubcategoryView().getSubcategoryId());
         marker.setId(this.getMarkerView().getMarkerId());
         for(TagView tagView: this.tags){
             Tag tag = new Tag();
-            tag.setId(tagView.getTagId());
+            tag.setName(tagView.getName());
             tags.add(tag);
         }
         advert.setPrice(this.getPrice());

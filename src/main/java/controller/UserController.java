@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserController {
+public class UserController extends AbstractController{
 
     @Autowired
     @Qualifier("userService")
@@ -53,21 +53,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public UserView authenticate(@RequestHeader HttpHeaders headers){
-        List<String> authHeaderValues = headers.get(HttpHeaders.AUTHORIZATION);
-        if(authHeaderValues.size() != 1){
-            throw new UserNotFoundException("Wrong authentication data.");
-        }
-        String[] authData = authHeaderValues.get(0).split(":");
-        if(authData.length < 2){
-            throw new UserNotFoundException("Wrong authentication data.");
-        }
-        String username = authData[0].replaceFirst("Basic ", "");
-        String password = authData[1];
-
-        User user = userService.getUser(username, password);
-        if(user == null){
-            throw new UserNotFoundException("Wrong authentication data.");
-        }
+        User user = authorize(headers);
 
         UserView userView = new ResponseUserView(user);
         Link userLink = ControllerLinkBuilder

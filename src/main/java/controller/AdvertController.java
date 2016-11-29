@@ -4,6 +4,7 @@ package main.java.controller;
 import main.java.entity.Advert;
 import main.java.service.AdvertService;
 import main.java.view.AdvertView;
+import main.java.view.TagView;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -43,8 +43,9 @@ public class AdvertRepositoryImpl implements AdvertRepository{
                             "WHERE title = \'" + advert.getTitle() + "\' AND add_time = " + addTime;
             ResultSet advertIdResultSet = selectIdStatement.executeQuery(selectIdQuery);
             advertIdResultSet.next();
-            //advert.setId(advertIdResultSet.getInt("id_ad"));
             Integer addedAdvertId = advertIdResultSet.getInt("id_ad");
+
+            //TODO: добавить теги которых нет в таблице
 
             final String tagBindingQuery = "insert into advert_tag(id_ad, id_tag) values(?, ?)";
             PreparedStatement tagBindingStatement = connection.prepareStatement(tagBindingQuery);
@@ -61,7 +62,6 @@ public class AdvertRepositoryImpl implements AdvertRepository{
             exception.printStackTrace();
             throw new DBAccessException(exception.getMessage());
         }
-        //return advert;
         return addedAdvert;
     }
 
