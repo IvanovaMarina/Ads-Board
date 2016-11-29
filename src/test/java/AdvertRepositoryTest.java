@@ -5,8 +5,10 @@ import main.java.dao.AdvertRepositoryImpl;
 import main.java.dao.ConnectionManager;
 
 public class AdvertRepositoryTest {
+
+    private static AdvertRepositoryImpl advertRepository = new AdvertRepositoryImpl();
+
     public static void main(String[] args) {
-        AdvertRepositoryImpl advertRepository = new AdvertRepositoryImpl();
         advertRepository.setConnection(new ConnectionManager().getConnection());
 
         /*Advert advert = new Advert();
@@ -30,6 +32,15 @@ public class AdvertRepositoryTest {
 
         Advert advertResult = advertRepository.add(advert);
         System.out.println(advertResult.getId());*/
-        System.out.println(advertRepository.getOne(4));
+        //System.out.println(advertRepository.getOne(4));
+        advertsCountTest();
+    }
+
+    private static void selectPageTest(){
+        advertRepository.getAdverts(2, 0).stream().forEach(System.out::println);
+    }
+
+    private static void advertsCountTest(){
+        System.out.println(advertRepository.count());
     }
 }
