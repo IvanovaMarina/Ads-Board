@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public abstract class AbstractController {
     @Qualifier("userService")
     private UserService userService;
 
-    protected User authorize(@RequestHeader HttpHeaders headers)
+    protected User authorize(HttpHeaders headers)
     {
         List<String> authHeaderValues = headers.get(HttpHeaders.AUTHORIZATION);
         if(authHeaderValues == null){
@@ -37,6 +36,14 @@ public abstract class AbstractController {
         User user = userService.getUser(username, password);
         if(user == null){
             throw new UnauthorizedUserException("Wrong authentication data.");
+        }
+        return user;
+    }
+
+    protected User adminAuthorize(HttpHeaders headers){
+        User user = authorize(headers);
+        if(user.isAdmin() == false){
+            throw new UnauthorizedUserException("Only admin is allowed to perform this action.");
         }
         return user;
     }

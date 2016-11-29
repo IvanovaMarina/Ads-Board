@@ -99,6 +99,13 @@ public class AdvertController extends AbstractController{
         return advertService.getImage(id);
     }
 
+    @RequestMapping(value = "/{advertId}", method = RequestMethod.DELETE)
+    public void deleteAdvert(@PathVariable Integer advertId, @RequestHeader HttpHeaders headers){
+
+        //TODO: доделать удаление (удаляет или юзер который добавил или админ)
+    }
+
+
     public void setAdvertService(AdvertService advertService) {
         this.advertService = advertService;
     }
