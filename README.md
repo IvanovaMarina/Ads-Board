@@ -273,6 +273,9 @@ body
     "self": {
       "href": "http://localhost:8080/adverts/25"
     },
+    "image": {
+      "href": "http://localhost:8080/adverts/25/image"
+    },
     "incrementViews": {
       "href": "http://localhost:8080/adverts/25/incrementViews"
     }
@@ -283,6 +286,11 @@ body
     "surname": "Fedoronchuk",
     "phone": "752 25 50",
     "email": "haistler@ukr.net",
+    "_links": {
+      "image": {
+        "href": "http://localhost:8080/users/1/image"
+      }
+    },
     "id": 1
   },
   "region": {
@@ -311,7 +319,18 @@ body
   }
 }
 ```
-
+error
+Status: 404 Not found
+```json
+{
+  "timestamp": "2016-11-30T20:47:29.423+0000",
+  "status": 404,
+  "error": "Not Found",
+  "exception": "main.java.service.AdvertNotFoundException",
+  "message": "Advert not found.",
+  "path": "/adverts/23"
+}
+```
 			
 # Добавление объявления		
 url	/adverts		
