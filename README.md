@@ -13,6 +13,7 @@ header	Authorization	Basic login:password
 			
 Response			
 body	
+```json
 {
   "name": "Bogdan",
   "surname": "Fedoronchuk",
@@ -32,7 +33,7 @@ body
   },
   "id": 1
 }
-
+```
 			
 			
 	Регистрация пользователя		
