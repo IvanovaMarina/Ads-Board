@@ -433,5 +433,163 @@ Status: 401 Unauthorized
   "path": "/adverts/"
 }
 ```
+
+# Извлечение страницы объявлений		
+url	/adverts?page={intValue}&size={intValue}	
+method	GET		
 			
+Request			
+\-			
 			
+Response			
+body			
+```json
+{
+  "_embedded": {
+    "adverts": [
+      {
+        "title": "New ad.",
+        "description": "My description. Lorem ipsum.",
+        "addTime": "2016-11-30T22:04:39",
+        "views": 0,
+        "tags": [
+          {
+            "name": "б/у",
+            "id": 1
+          },
+          {
+            "name": "random_tag",
+            "id": 3
+          },
+          {
+            "name": "new_tag",
+            "id": 6
+          }
+        ],
+        "price": 112,
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/adverts/27"
+          },
+          "image": {
+            "href": "http://localhost:8080/adverts/27/image"
+          },
+          "incrementViews": {
+            "href": "http://localhost:8080/adverts/27/incrementViews"
+          }
+        },
+        "id": 27,
+        "owner": {
+          "name": "Bodya",
+          "surname": "Fedoronchuk",
+          "phone": "752 25 50",
+          "email": "haistler@ukr.net",
+          "id": 1
+        },
+        "region": {
+          "name": "Одесская область",
+          "id": 1
+        },
+        "country": {
+          "name": "Украина",
+          "id": 1
+        },
+        "category": {
+          "name": "Автомобили",
+          "id": 1
+        },
+        "subcategory": {
+          "name": "Легковые",
+          "id": 1
+        },
+        "marker": {
+          "name": "Срочно",
+          "id": 1
+        },
+        "currency": {
+          "abbreviation": "грн",
+          "id": 1
+        }
+      },
+      {
+        "title": "New ad2",
+        "description": "My description. Lorem ipsum.",
+        "addTime": "2016-11-30T19:41:32",
+        "views": 0,
+        "tags": [
+          {
+            "name": "б/у",
+            "id": 1
+          },
+          {
+            "name": "random_tag",
+            "id": 3
+          },
+          {
+            "name": "new_tag",
+            "id": 6
+          }
+        ],
+        "price": 112,
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/adverts/26"
+          },
+          "image": {
+            "href": "http://localhost:8080/adverts/26/image"
+          },
+          "incrementViews": {
+            "href": "http://localhost:8080/adverts/26/incrementViews"
+          }
+        },
+        "id": 26,
+        "owner": {
+          "name": "Bodya",
+          "surname": "Fedoronchuk",
+          "phone": "752 25 50",
+          "email": "haistler@ukr.net",
+          "id": 1
+        },
+        "region": {
+          "name": "Одесская область",
+          "id": 1
+        },
+        "country": {
+          "name": "Украина",
+          "id": 1
+        },
+        "category": {
+          "name": "Автомобили",
+          "id": 1
+        },
+        "subcategory": {
+          "name": "Легковые",
+          "id": 1
+        },
+        "marker": {
+          "name": "Срочно",
+          "id": 1
+        },
+        "currency": {
+          "abbreviation": "грн",
+          "id": 1
+        }
+      }
+    ]
+  },
+  "_links": {
+    "firstPage": {
+      "href": "http://localhost:8080/adverts?page=1&size=2"
+    },
+    "currentPage": {
+      "href": "http://localhost:8080/adverts?page=1&size=2"
+    },
+    "lastPage": {
+      "href": "http://localhost:8080/adverts?page=2&size=2"
+    }
+  }
+}
+```
+# Увеличение просмотров объявления	
+url	adverts/{id}/incrementViews	
+method	GET
