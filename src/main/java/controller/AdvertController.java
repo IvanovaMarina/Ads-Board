@@ -5,6 +5,7 @@ import main.java.entity.Advert;
 import main.java.service.AdvertService;
 import main.java.view.AdvertView;
 import main.java.view.TagView;
+import main.java.view.UserView;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +29,22 @@ public class AdvertController extends AbstractController{
     @RequestMapping(value = "/{advertId}")
     public AdvertView getOneAdvert(@PathVariable Integer advertId){
         AdvertView advertView = new AdvertView(advertService.getOne(advertId));
+        Link advertLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class).getOneAdvert(advertId))
+                .withSelfRel();
+        Link incrementViewsLink = new Link(advertLink.getHref() + "/incrementViews", "incrementViews");
+        Link imageLink = new Link(advertLink.getHref() + "/image", "image");
+        UserView owner = advertView.getUserView();
+        Link ownerLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(UserController.class).getOneUser(owner.getUserId()))
+                .withSelfRel();
+        Link ownerImageLink = new Link(ownerLink.getHref() + "/image", "image");
+        owner.add(ownerImageLink);
+        advertView.add(advertLink);
+        advertView.add(imageLink);
+        advertView.add(incrementViewsLink);
         return advertView;
     }
 
@@ -51,14 +68,15 @@ public class AdvertController extends AbstractController{
                         .methodOn(AdvertController.class).getOneAdvert(newAdvert.getId()))
                 .withSelfRel();
         Link imageLink = new Link(advertLink.getHref() + "/image", "image");
+        Link incrementViewsLink = new Link(advertLink.getHref() + "/incrementViews", "incrementViews");
         responseAdvertView.add(advertLink);
         responseAdvertView.add(imageLink);
-
+        responseAdvertView.add(incrementViewsLink);
         return responseAdvertView;
     }
 
     @RequestMapping(params = {"page", "size"}, method = RequestMethod.GET)
-    public Resources<AdvertView> getAdverts(@RequestParam("page") int page, @RequestParam("size") int size){
+    public Resources<AdvertView> getAdverts(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
         List<AdvertView> advertViews = advertService.getAdverts(page, size).stream()
                 .map(advert -> {
                     AdvertView advertView = new AdvertView(advert);
@@ -67,8 +85,10 @@ public class AdvertController extends AbstractController{
                                     .methodOn(AdvertController.class).getOneAdvert(advert.getId()))
                             .withSelfRel();
                     Link imageLink = new Link(advertLink.getHref() + "/image", "image");
+                    Link incrementViewsLink = new Link(advertLink.getHref() + "/incrementViews", "incrementViews");
                     advertView.add(advertLink);
                     advertView.add(imageLink);
+                    advertView.add(incrementViewsLink);
                     return advertView;
                 })
                 .collect(Collectors.toList());
@@ -92,6 +112,11 @@ public class AdvertController extends AbstractController{
         advertViewResources.add(curPageLink);
         advertViewResources.add(lastPageLink);
         return advertViewResources;
+    }
+
+    @RequestMapping(value = "/{advertId}/incrementViews", method = RequestMethod.PUT)
+    public void incrementAdvertViews(@PathVariable  Integer advertId){
+        advertService.incrementAdvertViews(advertId);
     }
 
     @RequestMapping(value = "/{id}/image", method = RequestMethod.GET, produces = "image/jpg")

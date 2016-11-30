@@ -12,4 +12,6 @@ public interface AdvertService {
     byte[] getImage(Integer advertId);
     List<Advert> getAdverts(int page, int size);
     int getLastPage(int pageSize);
+    void incrementAdvertViews(Integer id);
+    Advert update(Advert advert);
 }

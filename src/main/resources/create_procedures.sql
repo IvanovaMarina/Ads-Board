@@ -19,6 +19,7 @@ SELECT id_ad INTO @id FROM advert WHERE title = in_title  AND add_time = in_add_
 INSERT INTO price(id_p, amount, id_cur)
 VALUES (@id, in_amount, in_id_cur);
 
-UPDATE advert SET id_p = @id;
+UPDATE advert SET id_p = @id
+WHERE id_ad = @id;
 
 END

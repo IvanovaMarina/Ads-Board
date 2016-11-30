@@ -361,6 +361,21 @@ public class AdvertRepositoryImpl implements AdvertRepository{
         return count;
     }
 
+    @Override
+    public void incrementAdvertViews(Integer id) {
+        String query =
+                "UPDATE advert\n" +
+                "SET views = views + 1\n" +
+                "WHERE id_ad = ?";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.execute();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+    }
 
     public void setConnection(Connection connection) {
         this.connection = connection;

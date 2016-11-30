@@ -12,4 +12,5 @@ public interface AdvertRepository {
     //TODO: при удалении advert удалять записи из adver_tag
     List<Advert> getAdverts(int limit, int offset);
     int count();
+    void incrementAdvertViews(Integer id);
 }

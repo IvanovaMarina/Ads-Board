@@ -51,6 +51,7 @@ public class AdvertServiceImpl implements AdvertService{
 
     @Override
     public Advert getOne(Integer id) {
+        checkAdvertExisting(id);
         return advertRepository.getOne(id);
     }
 
@@ -76,7 +77,10 @@ public class AdvertServiceImpl implements AdvertService{
     }
 
     private void checkAdvertExisting(Integer advertId) {
-        //TODO: проверит на наличие Advert
+        Advert existingAdvert = advertRepository.getOne(advertId);
+        if(existingAdvert == null){
+            throw new AdvertNotFoundException("Advert not found.");
+        }
     }
 
     @Override
@@ -114,6 +118,18 @@ public class AdvertServiceImpl implements AdvertService{
             lastPage += 1;
         }
         return lastPage;
+    }
+
+    @Override
+    public void incrementAdvertViews(Integer id) {
+        advertRepository.incrementAdvertViews(id);
+    }
+
+    @Override
+    public Advert update(Advert advert) {
+        checkAdvertExisting(advert.getId());
+
+        return null;
     }
 
     public void setAdvertRepository(AdvertRepository advertRepository) {

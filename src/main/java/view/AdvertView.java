@@ -13,6 +13,7 @@ import java.util.List;
 @Relation(collectionRelation = "adverts")
 public class AdvertView extends ResourceSupport{
 
+    @JsonProperty(value = "id")
     private Integer advertId;
     private String title;
     private String description;

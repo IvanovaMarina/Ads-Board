@@ -1,8 +1,13 @@
 package test.java;
 
 
+import main.java.dao.AdvertRepository;
 import main.java.dao.AdvertRepositoryImpl;
 import main.java.dao.ConnectionManager;
+import main.java.entity.Advert;
+import main.java.entity.Currency;
+import main.java.entity.Subcategory;
+import main.java.entity.Tag;
 
 public class AdvertRepositoryTest {
 
@@ -33,7 +38,15 @@ public class AdvertRepositoryTest {
         Advert advertResult = advertRepository.add(advert);
         System.out.println(advertResult.getId());*/
         //System.out.println(advertRepository.getOne(4));
-        advertsCountTest();
+
+        Advert advert = advertRepository.getOne(25);
+        System.out.println(advert);
+
+        advert.setPrice(601.0);
+        advert.setCurrency(new Currency(3, null));
+
+        advertRepository.update(advert);
+        System.out.println(advertRepository.update(advert));
     }
 
     private static void selectPageTest(){
