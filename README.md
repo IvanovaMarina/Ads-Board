@@ -42,6 +42,7 @@ method	POST
 			
 Request			
 body	
+```json
 {
     "name":"Bodya",
     "surname":"Fedoronchuk",
@@ -52,10 +53,11 @@ body
     "region": 1,
     "image": "data:image/jpeg;base64,[encodedInBaseImage]"
 }
-
+```
 			
 Response
 body
+```json
 {
   "name": "Bogdan",
   "surname": "Fedoronchuk",
@@ -75,7 +77,7 @@ body
   },
   "id": 1
 }
-		
+```		
 			
 			
 	Извлечение категорий объявлений		
@@ -87,6 +89,7 @@ Request
 			
 Response			
 body	
+```json
 {
   "_embedded": {
     "categories": [
@@ -116,7 +119,7 @@ body
     }
   }
 }
-			
+```			
 			
 			
 	Извлечение подкатегорий объявлений		
@@ -128,6 +131,7 @@ Request
 			
 Response			
 body	
+```json
 {
   "_embedded": {
     "subcategories": [
@@ -157,6 +161,7 @@ body
     }
   }
 }
+```
 			
 			
 	Извлечение возможных валют		
@@ -167,7 +172,8 @@ Request
 -			
 			
 Response			
-body	
+body
+```json
 {
   "_embedded": {
     "currencies": [
@@ -197,6 +203,7 @@ body
     }
   }
 }
+```
 			
 	Извлечение возможных маркеров(пометок)		
 url	/markers		
@@ -207,6 +214,7 @@ Request
 			
 Response			
 body	
+```json
 {
   "_embedded": {
     "markers": [
@@ -236,7 +244,7 @@ body
     }
   }
 }
-			
+```			
 			
 	Извлечение объявления		
 url	/adverts/{advertId}		
@@ -247,6 +255,7 @@ Request
 			
 Response			
 body	
+```json
 {
   "title": "New ad",
   "description": "My description. Lorem ipsum.",
@@ -304,6 +313,7 @@ body
     "id": 3
   }
 }
+```
 
 			
 	Добавление объявления		
