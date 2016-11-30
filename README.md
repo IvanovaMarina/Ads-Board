@@ -5,8 +5,8 @@ Documentation: https://docs.google.com/spreadsheets/d/1r3DN5eK8weqfvPauLsXdgniRb
 			
 			
 	# Аутентификация пользователя		
-#url	/users/login		
-# method	GET		
+url	/users/login		
+method	GET		
 			
 Request			
 header	Authorization	Basic login:password	
@@ -80,7 +80,7 @@ body
 ```		
 			
 			
-	#Извлечение категорий объявлений		
+	Извлечение категорий объявлений		
 url	/categories		
 method	GET		
 			
