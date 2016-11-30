@@ -590,4 +590,4 @@ body
 ```
 # Увеличение просмотров объявления	
 url	adverts/{id}/incrementViews<br>
-method	GET
+method	PUT
