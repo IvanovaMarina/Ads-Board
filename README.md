@@ -12,25 +12,27 @@ Request
 header	Authorization	Basic login:password	
 			
 Response			
-body	"{
-  ""name"": ""Bogdan"",
-  ""surname"": ""Fedoronchuk"",
-  ""phone"": ""752 25 50"",
-  ""email"": ""haistler97@ukr.net"",
-  ""registrationDate"": ""2016-11-19T12:31:22"",
-  ""regionName"": ""Одесская область"",
-  ""countryName"": ""Украина"",
-  ""admin"": false,
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/users/1""
+body	
+{
+  "name": "Bogdan",
+  "surname": "Fedoronchuk",
+  "phone": "752 25 50",
+  "email": "haistler97@ukr.net",
+  "registrationDate": "2016-11-19T12:31:22",
+  "regionName": "Одесская область",
+  "countryName": "Украина",
+  "admin": false,
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/users/1"
     },
-    ""image"": {
-      ""href"": ""http://localhost:8080/users/1/image""
+    "image": {
+      "href": "http://localhost:8080/users/1/image"
     }
   },
-  ""id"": 1
-}"		
+  "id": 1
+}
+
 			
 			
 	Регистрация пользователя		
@@ -38,37 +40,41 @@ url	/users
 method	POST		
 			
 Request			
-body	"{
-    ""name"":""Bodya"",
-    ""surname"":""Fedoronchuk"",
-    ""login"":""haistler"",
-    ""password"":""1234"",
-    ""phone"":""752 65 70"",
-    ""email"":""haistler@ukr.net"",
-    ""region"": 1,
-    ""image"": ""data:image/jpeg;base64,[encodedInBaseImage]""
-}"		
+body	
+{
+    "name":"Bodya",
+    "surname":"Fedoronchuk",
+    "login":"haistler",
+    "password":"1234",
+    "phone":"752 65 70",
+    "email":"haistler@ukr.net",
+    "region": 1,
+    "image": "data:image/jpeg;base64,[encodedInBaseImage]"
+}
+
 			
-Response			
-body	"{
-  ""name"": ""Bogdan"",
-  ""surname"": ""Fedoronchuk"",
-  ""phone"": ""754 24 30"",
-  ""email"": ""haistler21@ukr.net"",
-  ""registrationDate"": ""2016-11-19T12:31:22"",
-  ""regionName"": ""Одесская область"",
-  ""countryName"": ""Украина"",
-  ""admin"": false,
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/users/1""
+Response
+body
+{
+  "name": "Bogdan",
+  "surname": "Fedoronchuk",
+  "phone": "754 24 30",
+  "email": "haistler21@ukr.net",
+  "registrationDate": "2016-11-19T12:31:22",
+  "regionName": "Одесская область",
+  "countryName": "Украина",
+  "admin": false,
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/users/1"
     },
-    ""image"": {
-      ""href"": ""http://localhost:8080/users/1/image""
+    "image": {
+      "href": "http://localhost:8080/users/1/image"
     }
   },
-  ""id"": 1
-}"		
+  "id": 1
+}
+		
 			
 			
 	Извлечение категорий объявлений		
@@ -79,35 +85,36 @@ Request
 -			
 			
 Response			
-body	"{
-  ""_embedded"": {
-    ""categories"": [
+body	
+{
+  "_embedded": {
+    "categories": [
       {
-        ""name"": ""Автомобили"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/categories/1""
+        "name": "Автомобили",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/1"
           }
         },
-        ""id"": 1
+        "id": 1
       },
       {
-        ""name"": ""Промшленность"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/categories/2""
+        "name": "Промшленность",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/2"
           }
         },
-        ""id"": 2
+        "id": 2
       }
     ]
   },
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/categories""
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/categories"
     }
   }
-}"		
+}
 			
 			
 			
@@ -119,35 +126,36 @@ Request
 -			
 			
 Response			
-body	"{
-  ""_embedded"": {
-    ""subcategories"": [
+body	
+{
+  "_embedded": {
+    "subcategories": [
       {
-        ""name"": ""Грузовики"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/categories/1/subcategories/1""
+        "name": "Грузовики",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/1/subcategories/1"
           }
         },
-        ""id"": 1
+        "id": 1
       },
       {
-        ""name"": ""Легковые"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/categories/1/subcategories/2""
+        "name": "Легковые",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/1/subcategories/2"
           }
         },
-        ""id"": 2
+        "id": 2
       }
     ]
   },
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/categories/1/subcategories""
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/categories/1/subcategories"
     }
   }
-}"		
+}
 			
 			
 	Извлечение возможных валют		
@@ -158,35 +166,36 @@ Request
 -			
 			
 Response			
-body	"{
-  ""_embedded"": {
-    ""currencies"": [
+body	
+{
+  "_embedded": {
+    "currencies": [
       {
-        ""abbreviation"": ""грн"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/currencies/1""
+        "abbreviation": "грн",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/currencies/1"
           }
         },
-        ""id"": 1
+        "id": 1
       },
       {
-        ""abbreviation"": ""долл"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/currencies/2""
+        "abbreviation": "долл",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/currencies/2"
           }
         },
-        ""id"": 2
+        "id": 2
       }
     ]
   },
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/currencies""
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/currencies"
     }
   }
-}"		
+}
 			
 	Извлечение возможных маркеров(пометок)		
 url	/markers		
@@ -196,35 +205,36 @@ Request
 -			
 			
 Response			
-body	"{
-  ""_embedded"": {
-    ""markers"": [
+body	
+{
+  "_embedded": {
+    "markers": [
       {
-        ""name"": ""дешево"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/markers/2""
+        "name": "дешево",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/markers/2"
           }
         },
-        ""id"": 2
+        "id": 2
       },
       {
-        ""name"": ""срочно"",
-        ""_links"": {
-          ""self"": {
-            ""href"": ""http://localhost:8080/markers/1""
+        "name": "срочно",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/markers/1"
           }
         },
-        ""id"": 1
+        "id": 1
       }
     ]
   },
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/markers""
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/markers"
     }
   }
-}"		
+}
 			
 			
 	Извлечение объявления		
@@ -235,55 +245,65 @@ Request
 -			
 			
 Response			
-body	"{
-  ""advertId"": 4,
-  ""title"": ""Second ad"",
-  ""description"": ""My description"",
-  ""addTime"": ""2016-11-23T13:56:27"",
-  ""views"": 0,
-  ""tags"": [
+body	
+{
+  "title": "New ad",
+  "description": "My description. Lorem ipsum.",
+  "addTime": "2016-11-30T19:40:56",
+  "views": 0,
+  "tags": [
     {
-      ""name"": ""б/у"",
-      ""id"": 1
+      "name": "б/у",
+      "id": 1
     },
     {
-      ""name"": ""зарубежный"",
-      ""id"": 2
+      "name": "random_tag",
+      "id": 3
     }
   ],
-  ""price"": 25.56,
-  ""owner"": {
-    ""name"": ""Bodya"",
-    ""surname"": ""Fedoronchuk"",
-    ""phone"": ""752 25 50"",
-    ""email"": ""haistler@ukr.net"",
-    ""id"": 1
+  "price": 601,
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/adverts/25"
+    },
+    "incrementViews": {
+      "href": "http://localhost:8080/adverts/25/incrementViews"
+    }
   },
-  ""region"": {
-    ""name"": ""Одесская область"",
-    ""id"": 1
+  "id": 25,
+  "owner": {
+    "name": "Bodya",
+    "surname": "Fedoronchuk",
+    "phone": "752 25 50",
+    "email": "haistler@ukr.net",
+    "id": 1
   },
-  ""country"": {
-    ""name"": ""Украина"",
-    ""id"": 1
+  "region": {
+    "name": "Одесская область",
+    "id": 1
   },
-  ""category"": {
-    ""name"": ""Автомобили"",
-    ""id"": 1
+  "country": {
+    "name": "Украина",
+    "id": 1
   },
-  ""subcategory"": {
-    ""name"": ""Легковые"",
-    ""id"": 1
+  "category": {
+    "name": "Автомобили",
+    "id": 1
   },
-  ""marker"": {
-    ""name"": ""Срочно"",
-    ""id"": 1
+  "subcategory": {
+    "name": "Легковые",
+    "id": 1
   },
-  ""currency"": {
-    ""abbreviation"": ""грн"",
-    ""id"": 1
+  "marker": {
+    "name": "Срочно",
+    "id": 1
+  },
+  "currency": {
+    "abbreviation": "долл",
+    "id": 3
   }
-}"		
+}
+
 			
 	Добавление объявления		
 url	/adverts		
@@ -291,97 +311,13 @@ method	POST
 			
 Request			
 header	Authorization	Basic login:password	
-body	"{
-  ""title"": ""Second ad"",
-  ""description"": ""My description"",
-  ""tags"": [
-    {
-      ""name"": ""б/у""
-    },
-    {
-      ""name"": ""random_tag""
-    }
-  ],
-  ""price"": 25.56,
-  ""owner"": {
-    ""id"": 1
-  },
-  ""subcategory"": {
-    ""id"": 1
-  },
-  ""marker"": {
-    ""id"": 1
-  },
-  ""currency"": {
-    ""id"": 1
-  },
-   ""image"": ""data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAA""}"		
+body	
+
 			
 Response			
-body	"{
-  ""advertId"": 13,
-  ""title"": ""Second ad"",
-  ""description"": ""My description"",
-  ""addTime"": ""2016-11-28T21:33:22"",
-  ""views"": 0,
-  ""tags"": [
-    {
-      ""name"": ""б/у"",
-      ""id"": 1
-    },
-    {
-      ""name"": ""зарубежный"",
-      ""id"": 2
-    }
-  ],
-  ""price"": 25.56,
-  ""_links"": {
-    ""self"": {
-      ""href"": ""http://localhost:8080/adverts/13""
-    },
-    ""image"": {
-      ""href"": ""http://localhost:8080/adverts/13/image""
-    }
-  },
-  ""owner"": {
-    ""name"": ""Bodya"",
-    ""surname"": ""Fedoronchuk"",
-    ""phone"": ""752 25 50"",
-    ""email"": ""haistler@ukr.net"",
-    ""id"": 1
-  },
-  ""region"": {
-    ""name"": ""Одесская область"",
-    ""id"": 1
-  },
-  ""country"": {
-    ""name"": ""Украина"",
-    ""id"": 1
-  },
-  ""category"": {
-    ""name"": ""Автомобили"",
-    ""id"": 1
-  },
-  ""subcategory"": {
-    ""name"": ""Легковые"",
-    ""id"": 1
-  },
-  ""marker"": {
-    ""name"": ""Срочно"",
-    ""id"": 1
-  },
-  ""currency"": {
-    ""abbreviation"": ""грн"",
-    ""id"": 1
-  }
-}"		
-error	"{
-  ""timestamp"": ""2016-11-28T19:32:49.903+0000"",
-  ""status"": 401,
-  ""error"": ""Unauthorized"",
-  ""exception"": ""main.java.controller.UnauthorizedUserException"",
-  ""message"": ""Wrong authentication data."",
-  ""path"": ""/adverts/""
-}"		
+body	
+
+error	
+
 			
 			
