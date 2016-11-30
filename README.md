@@ -4,7 +4,7 @@ Documentation: https://docs.google.com/spreadsheets/d/1r3DN5eK8weqfvPauLsXdgniRb
 			
 			
 			
-	Аутентификация пользователя		
+	#Аутентификация пользователя		
 url	/users/login		
 method	GET		
 			
@@ -80,12 +80,12 @@ body
 ```		
 			
 			
-	Извлечение категорий объявлений		
+	#Извлечение категорий объявлений		
 url	/categories		
 method	GET		
 			
 Request			
-<div>-</div>			
+\-		
 			
 Response			
 body	
