@@ -591,5 +591,5 @@ body
 }
 ```
 # Увеличение просмотров объявления	
-url	adverts/{id}/incrementViews	
+url	adverts/{id}/incrementViews
 method	GET
