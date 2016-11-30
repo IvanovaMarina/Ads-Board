@@ -85,7 +85,7 @@ url	/categories
 method	GET		
 			
 Request			
-"-"			
+<div>-</div>			
 			
 Response			
 body	
