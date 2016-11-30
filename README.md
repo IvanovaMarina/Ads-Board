@@ -322,12 +322,116 @@ method	POST
 Request			
 header	Authorization	Basic login:password	
 body	
-
-			
+```json
+{
+  "title": "New ad.",
+  "description": "My description. Lorem ipsum.",
+  "tags": [
+    {
+      "name": "б/у"
+    },
+    {
+      "name": "random_tag"
+    },
+    {
+      "name": "new_tag"
+    }
+  ],
+  "price": 112,
+  "owner": {
+    "id": 1
+  },
+  "subcategory": {
+    "id": 1
+  },
+  "marker": {
+    "id": 1
+  },
+  "currency": {
+    "id": 1
+  },
+   "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAA"
+}
+```			
 Response			
 body	
-
+```json
+{
+  "title": "New ad.",
+  "description": "My description. Lorem ipsum.",
+  "addTime": "2016-11-30T22:04:39",
+  "views": 0,
+  "tags": [
+    {
+      "name": "б/у",
+      "id": 1
+    },
+    {
+      "name": "random_tag",
+      "id": 3
+    },
+    {
+      "name": "new_tag",
+      "id": 6
+    }
+  ],
+  "price": 112,
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/adverts/27"
+    },
+    "image": {
+      "href": "http://localhost:8080/adverts/27/image"
+    },
+    "incrementViews": {
+      "href": "http://localhost:8080/adverts/27/incrementViews"
+    }
+  },
+  "id": 27,
+  "owner": {
+    "name": "Bodya",
+    "surname": "Fedoronchuk",
+    "phone": "752 25 50",
+    "email": "haistler@ukr.net",
+    "id": 1
+  },
+  "region": {
+    "name": "Одесская область",
+    "id": 1
+  },
+  "country": {
+    "name": "Украина",
+    "id": 1
+  },
+  "category": {
+    "name": "Автомобили",
+    "id": 1
+  },
+  "subcategory": {
+    "name": "Легковые",
+    "id": 1
+  },
+  "marker": {
+    "name": "Срочно",
+    "id": 1
+  },
+  "currency": {
+    "abbreviation": "грн",
+    "id": 1
+  }
+}
+```
 error	
-
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-11-30T20:07:24.525+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/adverts/"
+}
+```
 			
 			
