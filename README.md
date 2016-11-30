@@ -1,10 +1,9 @@
 # Ads-Board
 Restful API. Adverts board.
 Documentation: https://docs.google.com/spreadsheets/d/1r3DN5eK8weqfvPauLsXdgniRbzXsvn54JhfnOk80KPE/edit?usp=sharing
+					
 			
-			
-			
-	# Аутентификация пользователя		
+# Аутентификация пользователя		
 url	/users/login		
 method	GET		
 			
@@ -36,7 +35,7 @@ body
 ```
 			
 			
-	Регистрация пользователя		
+# Регистрация пользователя		
 url	/users		
 method	POST		
 			
@@ -80,7 +79,7 @@ body
 ```		
 			
 			
-	Извлечение категорий объявлений		
+# Извлечение категорий объявлений		
 url	/categories		
 method	GET		
 			
@@ -122,12 +121,12 @@ body
 ```			
 			
 			
-	Извлечение подкатегорий объявлений		
+# Извлечение подкатегорий объявлений		
 url	/categories/{categoryId}/subcategories		
 method	GET		
 			
 Request			
--			
+\-			
 			
 Response			
 body	
@@ -164,12 +163,12 @@ body
 ```
 			
 			
-	Извлечение возможных валют		
+# Извлечение возможных валют		
 url	/currencies		
 method	GET		
 			
 Request			
--			
+\-			
 			
 Response			
 body
@@ -205,12 +204,12 @@ body
 }
 ```
 			
-	Извлечение возможных маркеров(пометок)		
+# Извлечение возможных маркеров(пометок)		
 url	/markers		
 method	GET		
 			
 Request			
--			
+\-			
 			
 Response			
 body	
@@ -246,12 +245,12 @@ body
 }
 ```			
 			
-	Извлечение объявления		
+# Извлечение объявления		
 url	/adverts/{advertId}		
 method	GET		
 			
 Request			
--			
+\-			
 			
 Response			
 body	
@@ -316,7 +315,7 @@ body
 ```
 
 			
-	Добавление объявления		
+# Добавление объявления		
 url	/adverts		
 method	POST		
 			
