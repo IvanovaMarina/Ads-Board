@@ -14,10 +14,10 @@ body
 {
   "name": "Bogdan",
   "surname": "Fedoronchuk",
-  "phone": "752 25 50",
+  "phone": "752 25 51",
   "email": "haistler97@ukr.net",
-  "registrationDate": "2016-11-19T12:31:22",
-  "regionName": "Одесская область",
+  "registrationDate": "2016-11-23T12:42:25",
+  "regionName": "Винницкая область",
   "countryName": "Украина",
   "admin": false,
   "_links": {
@@ -26,6 +26,9 @@ body
     },
     "image": {
       "href": "http://localhost:8080/users/1/image"
+    },
+    "adverts": {
+      "href": "http://localhost:8080/users/1/adverts"
     }
   },
   "id": 1
@@ -70,6 +73,9 @@ body
     },
     "image": {
       "href": "http://localhost:8080/users/1/image"
+    },
+    "adverts": {
+      "href": "http://localhost:8080/users/1/adverts"
     }
   },
   "id": 1
@@ -610,3 +616,55 @@ body
 # Увеличение просмотров объявления	
 url	adverts/{id}/incrementViews<br>
 method	PUT
+
+Request			
+\-			
+			
+Response			
+\-
+
+# Изменение данных о пользователе
+url	/users/{id}
+method	PUT
+
+Request			
+header	Authorization	Basic login:password	
+body
+```json
+{
+  "name": "Bogdan",
+  "surname": "Fedoronchuk",
+  "phone": "752 25 51",
+  "email": "haistler97@ukr.net",
+  "region": 2,
+  "id": 1
+}
+```
+			
+Response			
+body
+```json
+{
+  "name": "Bogdan",
+  "surname": "Fedoronchuk",
+  "phone": "752 25 51",
+  "email": "haistler97@ukr.net",
+  "registrationDate": "2016-11-23T12:42:25",
+  "regionName": "Винницкая область",
+  "countryName": "Украина",
+  "admin": false,
+  "id": 1
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-02T17:12:35.494+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/users/1"
+}
+```
