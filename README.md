@@ -73,6 +73,9 @@ body
     },
     "image": {
       "href": "http://localhost:8080/users/1/image"
+    },
+    "adverts": {
+      "href": "http://localhost:8080/users/1/adverts"
     }
   },
   "id": 1
