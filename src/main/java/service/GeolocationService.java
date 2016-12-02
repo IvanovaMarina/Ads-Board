@@ -22,4 +22,8 @@ public class GeolocationService {
     public List<Region> getRegions(Integer countryId){
         return geolocationRepository.getRegions(countryId);
     }
+
+    public Region getOneRegion(Integer id){
+        return geolocationRepository.getOneRegion(id);
+    }
 }

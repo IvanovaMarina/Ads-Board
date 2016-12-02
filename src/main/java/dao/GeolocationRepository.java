@@ -54,4 +54,24 @@ public class GeolocationRepository {
         }
         return regions;
     }
+
+    public Region getOneRegion(Integer id){
+        Region region = new Region();
+        try{
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT id_region, name FROM region " +
+                            "WHERE id_region = ?\n" +
+                            "LIMIT 1");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+
+            region.setId(resultSet.getInt("id_region"));
+            region.setName(resultSet.getString("name"));
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+        return region;
+    }
 }

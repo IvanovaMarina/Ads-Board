@@ -39,14 +39,17 @@ public class AdvertRepositoryTest {
         System.out.println(advertResult.getId());*/
         //System.out.println(advertRepository.getOne(4));
 
-        Advert advert = advertRepository.getOne(25);
+        /*Advert advert = advertRepository.getOne(25);
         System.out.println(advert);
 
         advert.setPrice(601.0);
         advert.setCurrency(new Currency(3, null));
 
         advertRepository.update(advert);
-        System.out.println(advertRepository.update(advert));
+        System.out.println(advertRepository.update(advert));*/
+
+        advertsByUserId(1);
+        advertsByUserId(2);
     }
 
     private static void selectPageTest(){
@@ -55,5 +58,9 @@ public class AdvertRepositoryTest {
 
     private static void advertsCountTest(){
         System.out.println(advertRepository.count());
+    }
+
+    private static void advertsByUserId(int id){
+        System.out.println(advertRepository.getAdvertsByUser(id));
     }
 }

@@ -130,6 +130,16 @@ public class AdvertController extends AbstractController{
         //TODO: доделать удаление (удаляет или юзер который добавил или админ)
     }
 
+    @RequestMapping(value = "/{advertId}", method = RequestMethod.PUT)
+    public AdvertView updateAdvert(@PathVariable Integer advertId,
+                                   @RequestBody AdvertView advertView,
+                                   @RequestHeader HttpHeaders headers){
+        authorize(headers);
+        Advert updatedAdvert = advertService.update(advertView.toAdvert());
+        AdvertView updatedAdvertView = new AdvertView(updatedAdvert);
+
+        return updatedAdvertView;
+    }
 
     public void setAdvertService(AdvertService advertService) {
         this.advertService = advertService;

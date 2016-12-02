@@ -110,6 +110,8 @@ public class AdvertServiceImpl implements AdvertService{
         return advertRepository.getAdverts(limit, offset);
     }
 
+
+
     @Override
     public int getLastPage(int pageSize) {
         double fractionalLastPage = advertRepository.count()*1.0/pageSize;
@@ -128,8 +130,24 @@ public class AdvertServiceImpl implements AdvertService{
     @Override
     public Advert update(Advert advert) {
         checkAdvertExisting(advert.getId());
+        Advert existingAdvert = advertRepository.getOne(advert.getId());
+        existingAdvert.setTitle(advert.getTitle());
+        existingAdvert.setDescription(advert.getDescription());
+        existingAdvert.getSubcategory().setId(advert.getSubcategory().getId());
+        existingAdvert.getMarker().setId(advert.getMarker().getId());
+        existingAdvert.setPrice(advert.getPrice());
+        existingAdvert.getCurrency().setId(advert.getCurrency().getId());
 
-        return null;
+        for(Tag tag: advert.getTags()){
+            boolean exists = tagRepository.getTag(tag.getName()) != null;
+            if(!exists){
+                tagRepository.addTag(tag);
+            }
+            tag.setId(tagRepository.getTag(tag.getName()).getId());
+        }
+        existingAdvert.setTags(advert.getTags());
+
+        return advertRepository.update(existingAdvert);
     }
 
     public void setAdvertRepository(AdvertRepository advertRepository) {

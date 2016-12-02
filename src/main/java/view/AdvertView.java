@@ -228,6 +228,8 @@ public class AdvertView extends ResourceSupport{
         advert.setTags(tags);
         advert.setCurrency(currency);
 
+
+        advert.setId(this.getAdvertId());
         advert.setTitle(this.getTitle());
         advert.setDescription(this.getDescription());
         owner.setId(this.getUserView().getUserId());

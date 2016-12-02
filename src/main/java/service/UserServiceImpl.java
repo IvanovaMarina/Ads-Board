@@ -1,8 +1,12 @@
 package main.java.service;
 
 
+import main.java.dao.AdvertRepository;
+import main.java.dao.GeolocationRepository;
 import main.java.dao.ImageUtil;
 import main.java.dao.UserRepository;
+import main.java.entity.Advert;
+import main.java.entity.Region;
 import main.java.entity.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     @Qualifier("userRepository")
     private UserRepository userRepository;
+
+    @Autowired
+    @Qualifier("advertRepository")
+    private AdvertRepository advertRepository;
+
+    @Autowired
+    private GeolocationRepository geolocationRepository;
 
     @Override
     public User add(User user) {
@@ -49,7 +60,15 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User update(User user) {
-        return null;
+        User existingUser = userRepository.getUser(user.getId());
+        existingUser.setName(user.getName());
+        existingUser.setSurname(user.getSurname());
+        existingUser.setPhone(user.getPhone());
+        existingUser.setEmail(user.getEmail());
+        Region region = geolocationRepository.getOneRegion(user.getRegion().getId());
+        existingUser.getRegion().setId(region.getId());
+        existingUser.getRegion().setName(region.getName());
+        return userRepository.update(existingUser);
     }
 
     @Override
@@ -120,10 +139,16 @@ public class UserServiceImpl implements UserService{
         return imageBytes;
     }
 
+    @Override
+    public List<Advert> getAdvertsByUser(int userId) {
+        checkUserExisting(userId);
+        return advertRepository.getAdvertsByUser(userId);
+    }
+
     private void checkUserExisting(Integer userId){
         User user = userRepository.getUser(userId);
         if(user == null){
-            throw new UserNotFoundException();
+            throw new UserNotFoundException("User not found.");
         }
     }
 
