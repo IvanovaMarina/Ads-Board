@@ -48,8 +48,7 @@ public class AdvertRepositoryTest {
         advertRepository.update(advert);
         System.out.println(advertRepository.update(advert));*/
 
-        advertsByUserId(1);
-        advertsByUserId(2);
+        System.out.println(advertRepository.countWithTag("hvgv"));
     }
 
     private static void selectPageTest(){
@@ -62,5 +61,9 @@ public class AdvertRepositoryTest {
 
     private static void advertsByUserId(int id){
         System.out.println(advertRepository.getAdvertsByUser(id));
+    }
+
+    private static void selectTagPageTest(){
+        advertRepository.getAdvertsByTag(5, 2, "б/у").stream().forEach(System.out::println);
     }
 }

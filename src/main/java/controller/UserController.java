@@ -2,7 +2,6 @@ package main.java.controller;
 
 
 import main.java.entity.User;
-import main.java.service.UserNotFoundException;
 import main.java.service.UserService;
 import main.java.view.AdvertView;
 import main.java.view.RequestUserView;
@@ -39,17 +38,7 @@ public class UserController extends AbstractController{
         byte[] imageBytes = Base64.decodeBase64(imageBase64parts[1]);
         userService.saveImage(newUser.getId(), imageBytes);
 
-        UserView responseUserView = new ResponseUserView(newUser);
-
-        Link userLink = ControllerLinkBuilder
-                .linkTo(ControllerLinkBuilder
-                        .methodOn(UserController.class).getOneUser(newUser.getId()))
-                .withSelfRel();
-
-        Link imageLink = new Link(userLink.getHref() + "/image", "image");
-
-        responseUserView.add(userLink);
-        responseUserView.add(imageLink);
+        UserView responseUserView = convertUserToView(newUser);
 
         return responseUserView;
     }
@@ -58,20 +47,8 @@ public class UserController extends AbstractController{
     public UserView authenticate(@RequestHeader HttpHeaders headers){
         User user = authorize(headers);
 
-        UserView userView = new ResponseUserView(user);
-        Link userLink = ControllerLinkBuilder
-                .linkTo(ControllerLinkBuilder
-                        .methodOn(UserController.class).getOneUser(user.getId()))
-                .withSelfRel();
+        UserView userView = convertUserToView(user);
 
-        Link imageLink = new Link(userLink.getHref() + "/image", "image");
-        Link advertsLink = ControllerLinkBuilder
-                .linkTo(ControllerLinkBuilder
-                        .methodOn(UserController.class).getAdverts(user.getId()))
-                .withRel("adverts");
-        userView.add(userLink);
-        userView.add(imageLink);
-        userView.add(advertsLink);
         return userView;
     }
 
@@ -83,28 +60,20 @@ public class UserController extends AbstractController{
     @RequestMapping(value="/{id}/adverts", method = RequestMethod.GET)
     public Resources<AdvertView> getAdverts(@PathVariable Integer id){
         List<AdvertView> advertViews = userService.getAdvertsByUser(id).stream()
-                .map(advert -> {
-                    AdvertView advertView = new AdvertView(advert);
-                    Link advertLink = ControllerLinkBuilder
-                            .linkTo(ControllerLinkBuilder
-                                    .methodOn(AdvertController.class).getOneAdvert(advert.getId()))
-                            .withSelfRel();
-                    Link imageLink = new Link(advertLink.getHref() + "/image", "image");
-                    Link incrementViewsLink = new Link(advertLink.getHref() + "/incrementViews", "incrementViews");
-                    advertView.add(advertLink);
-                    advertView.add(imageLink);
-                    advertView.add(incrementViewsLink);
-                    return advertView;
-                })
+                .map(advert -> convertAdvertToView(advert))
                 .collect(Collectors.toList());
         Resources<AdvertView> advertViewResources = new Resources<>(advertViews);
         return advertViewResources;
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
-    public UserView updateUser(@PathVariable Integer id, @RequestBody RequestUserView userView){
+    public UserView updateUser(@PathVariable Integer id,
+                               @RequestBody RequestUserView userView,
+                               @RequestHeader HttpHeaders headers){
+        authorize(headers);
+        userView.setUserId(id);
         User user = userService.update(userView.toUser());
-        ResponseUserView responseUserView = new ResponseUserView(user);
+        UserView responseUserView = convertUserToView(user);
         return responseUserView;
     }
     @RequestMapping(value = "/{id}/image", method = RequestMethod.GET, produces = "image/jpg")

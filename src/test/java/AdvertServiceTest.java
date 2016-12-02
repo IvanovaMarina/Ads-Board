@@ -15,10 +15,12 @@ public class AdvertServiceTest {
         advertRepository.setConnection(new ConnectionManager().getConnection());
         advertService.setAdvertRepository(advertRepository);
 
+        /*
         getLastPageTest(2);
         getLastPageTest(3);
 
-        getAdvertsTest(1, 3);
+        getAdvertsTest(1, 3);*/
+        advertService.getAdvertsByTag(1, 5, "new_tag").stream().forEach(System.out::println);
     }
 
     private static void getLastPageTest(int pageSize){

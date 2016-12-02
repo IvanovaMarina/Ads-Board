@@ -14,4 +14,12 @@ public interface AdvertRepository {
     List<Advert> getAdvertsByUser(int userId);
     int count();
     void incrementAdvertViews(Integer id);
+    List<Advert> getAdvertsByTag(int limit, int offset, String tagName);
+    List<Advert> getAdvertsByCategory(int limit, int offset, Integer categoryId);
+    List<Advert> getAdvertsBySubcategory(int limit, int offset, Integer subcategoryId);
+    List<Advert> getAdvertsByName(int limit, int offset, String name);
+    int countWithTag(String tagName);
+    int countWithCategory(Integer categoryId);
+    int countWithSubcategory(Integer subcategoryId);
+    int countWithName(String name);
 }

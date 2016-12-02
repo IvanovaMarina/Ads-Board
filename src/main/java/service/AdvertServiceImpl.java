@@ -97,24 +97,82 @@ public class AdvertServiceImpl implements AdvertService{
         return imageBytes;
     }
 
-    @Override
-    public List<Advert> getAdverts(int page, int size) {
+    private void checkPageParams(int page, int size){
         if(page < 1){
             throw new PageException("Page number must be more than 0.");
         }
         if(size < 1){
             throw new PageException("Page size must be more than 0.");
         }
+    }
+
+    @Override
+    public List<Advert> getAdverts(int page, int size) {
+        checkPageParams(page, size);
         int limit = size;
         int offset = (page - 1) * size;
         return advertRepository.getAdverts(limit, offset);
     }
 
+    @Override
+    public List<Advert> getAdvertsByTag(int page, int size, String tagName) {
+        checkPageParams(page, size);
+        int limit = size;
+        int offset = (page - 1) * size;
+        return advertRepository.getAdvertsByTag(limit, offset, tagName);
+    }
 
+    @Override
+    public List<Advert> getAdvertsByCategory(int page, int size, Integer categoryId) {
+        checkPageParams(page, size);
+        int limit = size;
+        int offset = (page - 1) * size;
+        return advertRepository.getAdvertsByCategory(limit, offset, categoryId);
+    }
+
+    @Override
+    public List<Advert> getAdvertsBySubcategory(int page, int size, Integer subcategoryId) {
+        checkPageParams(page, size);
+        int limit = size;
+        int offset = (page - 1) * size;
+        return advertRepository.getAdvertsBySubcategory(limit, offset, subcategoryId);
+    }
+
+    @Override
+    public List<Advert> getAdvertsByName(int page, int size, String name) {
+        checkPageParams(page, size);
+        int limit = size;
+        int offset = (page - 1) * size;
+        return advertRepository.getAdvertsByName(limit, offset, name);
+    }
 
     @Override
     public int getLastPage(int pageSize) {
-        double fractionalLastPage = advertRepository.count()*1.0/pageSize;
+        return calculateLastPage(advertRepository.count(), pageSize);
+    }
+
+    @Override
+    public int getTagLastPage(int pageSize, String tagName){
+        return calculateLastPage(advertRepository.countWithTag(tagName), pageSize);
+    }
+
+    @Override
+    public int getCategoryLastPage(int pageSize, Integer categoryId) {
+        return 0;
+    }
+
+    @Override
+    public int getSubcategoryLastPage(int pageSize, Integer subcategoryId) {
+        return 0;
+    }
+
+    @Override
+    public int getNameLastTagPage(int pageSize, String name) {
+        return 0;
+    }
+
+    private int calculateLastPage(int amount, int pageSize) {
+        double fractionalLastPage = amount*1.0/pageSize;
         int lastPage = (int) fractionalLastPage;
         if(fractionalLastPage > lastPage){
             lastPage += 1;

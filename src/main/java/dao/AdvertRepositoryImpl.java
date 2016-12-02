@@ -493,6 +493,180 @@ public class AdvertRepositoryImpl implements AdvertRepository {
         return adverts;
     }
 
+    @Override
+    public List<Advert> getAdvertsByTag(int limit, int offset, String tagName) {
+        List<Advert> adverts = new ArrayList<>();
+        try{
+            String query =
+                    "SELECT advert.id_ad AS id_ad, title, description, advert.path_to_photo AS photo_path,\n" +
+                            "add_time, views, user.id_user AS id_user, \n" +
+                            "user.name AS user_name, user.surname AS user_surname,\n" +
+                            "user.phone AS phone, user.email AS email,\n" +
+                            "region.id_region AS id_region, region.name AS region_name,\n" +
+                            "country.id_country AS id_country, country.name AS country_name,\n" +
+                            "subcategory.id_scat AS id_scat, subcategory.name AS scat_name,\n" +
+                            "category.id_cat AS id_cat, category.name AS cat_name,\n" +
+                            "price.amount AS price, currency.id_cur AS id_cur,\n" +
+                            "currency.abbreviation AS cur_abbrev, marker.id_m AS id_m,\n" +
+                            "marker.name AS marker_name\n" +
+                            "FROM advert\n" +
+                            "INNER JOIN user\n" +
+                            "INNER JOIN region\n" +
+                            "INNER JOIN country\n" +
+                            "INNER JOIN subcategory\n" +
+                            "INNER JOIN category\n" +
+                            "INNER JOIN price\n" +
+                            "INNER JOIN currency\n" +
+                            "INNER JOIN marker\n" +
+                            "INNER JOIN advert_tag\n" +
+                            "INNER JOIN tag\n" +
+                            "ON advert.id_user = user.id_user AND  user.id_region = region.id_region \n" +
+                            "\tAND region.id_country = country.id_country\n" +
+                            "    AND advert.id_scat = subcategory.id_scat\n" +
+                            "    AND subcategory.id_cat = category.id_cat\n" +
+                            "    AND advert.id_p = price.id_p\n" +
+                            "    AND price.id_cur = currency.id_cur\n" +
+                            "    AND advert.id_m = marker.id_m\n" +
+                            "    AND advert.id_ad = advert_tag.id_ad\n" +
+                            "    AND advert_tag.id_tag = tag.id_tag\n" +
+                            "WHERE tag.name LIKE ?\n" +
+                            "ORDER BY add_time DESC\n" +
+                            "LIMIT ? OFFSET ?\n";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, tagName);
+            statement.setInt(2, limit);
+            statement.setInt(3, offset);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Advert advert = new Advert();
+                User owner = new User();
+                Subcategory subcategory = new Subcategory();
+                Category category = new Category();
+                Region region = new Region();
+                Country country = new Country();
+                Marker marker = new Marker();
+                List<Tag> tags = new ArrayList<>();
+                Currency currency = new Currency();
+
+                advert.setOwner(owner);
+                subcategory.setCategory(category);
+                advert.setSubcategory(subcategory);
+                region.setCountry(country);
+                owner.setRegion(region);
+                advert.setMarker(marker);
+                advert.setTags(tags);
+                advert.setCurrency(currency);
+
+                advert.setId(resultSet.getInt("id_ad"));
+                advert.setTitle(resultSet.getString("title"));
+                advert.setDescription(resultSet.getString("description"));
+                advert.setPhotoPath(resultSet.getString("photo_path"));
+                Long addTime = resultSet.getLong("add_time");
+                advert.setAddTime(LocalDateTime
+                        .ofInstant(Instant.ofEpochSecond(addTime), ZoneId.systemDefault()));
+                advert.setViews(resultSet.getInt("views"));
+
+                owner.setId(resultSet.getInt("id_user"));
+                owner.setName(resultSet.getString("user_name"));
+                owner.setSurname(resultSet.getString("user_surname"));
+                owner.setPhone(resultSet.getString("phone"));
+                owner.setEmail(resultSet.getString("email"));
+
+                region.setId(resultSet.getInt("id_region"));
+                region.setName(resultSet.getString("region_name"));
+                country.setId(resultSet.getInt("id_country"));
+                country.setName(resultSet.getString("country_name"));
+
+                subcategory.setId(resultSet.getInt("id_scat"));
+                subcategory.setName(resultSet.getString("scat_name"));
+                category.setId(resultSet.getInt("id_cat"));
+                category.setName(resultSet.getString("cat_name"));
+
+                advert.setPrice(resultSet.getDouble("price"));
+
+                currency.setId(resultSet.getInt("id_cur"));
+                currency.setAbbreviation(resultSet.getString("cur_abbrev"));
+
+                marker.setId(resultSet.getInt("id_m"));
+                marker.setName(resultSet.getString("marker_name"));
+
+                String selectTagsQuery =
+                        "SELECT tag.id_tag AS id_tag, tag.name AS tag_name\n" +
+                                "FROM advert_tag\n" +
+                                "INNER JOIN tag\n" +
+                                "\tON advert_tag.id_tag = tag.id_tag\n" +
+                                "WHERE advert_tag.id_ad = ?";
+                PreparedStatement selectTagsStatement = connection.prepareStatement(selectTagsQuery);
+                selectTagsStatement.setInt(1, advert.getId());
+                ResultSet tagsResultSet = selectTagsStatement.executeQuery();
+                while(tagsResultSet.next()){
+                    Tag tag = new Tag();
+                    tag.setId(tagsResultSet.getInt("id_tag"));
+                    tag.setName(tagsResultSet.getString("tag_name"));
+                    tags.add(tag);
+                }
+
+                adverts.add(advert);
+            }
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+        return adverts;
+    }
+
+    @Override
+    public List<Advert> getAdvertsByCategory(int limit, int offset, Integer categoryId) {
+        return null;
+    }
+
+    @Override
+    public List<Advert> getAdvertsBySubcategory(int limit, int offset, Integer subcategoryId) {
+        return null;
+    }
+
+    @Override
+    public List<Advert> getAdvertsByName(int limit, int offset, String name) {
+        return null;
+    }
+
+    @Override
+    public int countWithTag(String tagName) {
+        int count;
+        String query = "SELECT COUNT(*) AS count FROM advert\n" +
+                "INNER JOIN advert_tag\n" +
+                "INNER JOIN tag \n" +
+                "ON advert.id_ad = advert_tag.id_ad AND advert_tag.id_tag = tag.id_tag\n" +
+                "WHERE tag.name LIKE ?\n";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, tagName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            count = resultSet.getInt("count");
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+
+        return count;
+    }
+
+    @Override
+    public int countWithCategory(Integer categoryId) {
+        return 0;
+    }
+
+    @Override
+    public int countWithSubcategory(Integer subcategoryId) {
+        return 0;
+    }
+
+    @Override
+    public int countWithName(String name) {
+        return 0;
+    }
+
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

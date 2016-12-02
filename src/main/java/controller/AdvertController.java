@@ -4,7 +4,6 @@ package main.java.controller;
 import main.java.entity.Advert;
 import main.java.service.AdvertService;
 import main.java.view.AdvertView;
-import main.java.view.TagView;
 import main.java.view.UserView;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,19 +77,7 @@ public class AdvertController extends AbstractController{
     @RequestMapping(params = {"page", "size"}, method = RequestMethod.GET)
     public Resources<AdvertView> getAdverts(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
         List<AdvertView> advertViews = advertService.getAdverts(page, size).stream()
-                .map(advert -> {
-                    AdvertView advertView = new AdvertView(advert);
-                    Link advertLink = ControllerLinkBuilder
-                            .linkTo(ControllerLinkBuilder
-                                    .methodOn(AdvertController.class).getOneAdvert(advert.getId()))
-                            .withSelfRel();
-                    Link imageLink = new Link(advertLink.getHref() + "/image", "image");
-                    Link incrementViewsLink = new Link(advertLink.getHref() + "/incrementViews", "incrementViews");
-                    advertView.add(advertLink);
-                    advertView.add(imageLink);
-                    advertView.add(incrementViewsLink);
-                    return advertView;
-                })
+                .map(advert -> convertAdvertToView(advert))
                 .collect(Collectors.toList());
         Link firstPageLink = ControllerLinkBuilder
                 .linkTo(ControllerLinkBuilder
@@ -106,6 +93,35 @@ public class AdvertController extends AbstractController{
                 .linkTo(ControllerLinkBuilder
                         .methodOn(AdvertController.class)
                         .getAdverts(advertService.getLastPage(size), size))
+                .withRel("lastPage");
+        Resources<AdvertView> advertViewResources = new Resources<>(advertViews);
+        advertViewResources.add(firstPageLink);
+        advertViewResources.add(curPageLink);
+        advertViewResources.add(lastPageLink);
+        return advertViewResources;
+    }
+
+    @RequestMapping(params = {"page", "size", "tagName"}, method = RequestMethod.GET)
+    public Resources<AdvertView> getAdvertsByTag(@RequestParam("page") Integer page,
+                                            @RequestParam("size") Integer size,
+                                            @RequestParam( "tagName") String tagName){
+        List<AdvertView> advertViews = advertService.getAdvertsByTag(page, size, tagName).stream()
+                .map(advert -> convertAdvertToView(advert))
+                .collect(Collectors.toList());
+        Link firstPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByTag(1, size, tagName))
+                .withRel("firstPage");
+        Link curPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByTag(page, size, tagName))
+                .withRel("currentPage");
+        Link lastPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByTag(advertService.getLastPage(size), size, tagName))
                 .withRel("lastPage");
         Resources<AdvertView> advertViewResources = new Resources<>(advertViews);
         advertViewResources.add(firstPageLink);
@@ -144,4 +160,5 @@ public class AdvertController extends AbstractController{
     public void setAdvertService(AdvertService advertService) {
         this.advertService = advertService;
     }
+
 }
