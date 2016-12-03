@@ -709,7 +709,7 @@ Status: 401 Unauthorized
 ```
 
 # Изменение данных об объявлении
-url	/adverts/{id}
+url	/adverts/{id}<br>
 method	PUT
 
 Request			
