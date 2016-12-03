@@ -101,15 +101,21 @@ body
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&categoryId=1"
           }
         },
         "id": 1
       },
       {
-        "name": "Промшленность",
+        "name": "Бытовая техника",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/2"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&categoryId=2"
           }
         },
         "id": 2
@@ -139,22 +145,40 @@ body
   "_embedded": {
     "subcategories": [
       {
-        "name": "Грузовики",
+        "name": "Легковые",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1/subcategories/1"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=1"
           }
         },
         "id": 1
       },
       {
-        "name": "Легковые",
+        "name": "Грузовики",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1/subcategories/2"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=2"
           }
         },
         "id": 2
+      },
+      {
+        "name": "Прицепы",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/1/subcategories/3"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=3"
+          }
+        },
+        "id": 3
       }
     ]
   },
