@@ -130,6 +130,35 @@ public class AdvertController extends AbstractController{
         return advertViewResources;
     }
 
+    @RequestMapping(params = {"page", "size", "categoryId"}, method = RequestMethod.GET)
+    public Resources<AdvertView> getAdvertsByCategory(@RequestParam("page") Integer page,
+                                                 @RequestParam("size") Integer size,
+                                                 @RequestParam( "categoryId") Integer categoryId){
+        List<AdvertView> advertViews = advertService.getAdvertsByCategory(page, size, categoryId).stream()
+                .map(advert -> convertAdvertToView(advert))
+                .collect(Collectors.toList());
+        Link firstPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByCategory(1, size, categoryId))
+                .withRel("firstPage");
+        Link curPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByCategory(page, size, categoryId))
+                .withRel("currentPage");
+        Link lastPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsByCategory(advertService.getCategoryLastPage(size, categoryId), size, categoryId))
+                .withRel("lastPage");
+        Resources<AdvertView> advertViewResources = new Resources<>(advertViews);
+        advertViewResources.add(firstPageLink);
+        advertViewResources.add(curPageLink);
+        advertViewResources.add(lastPageLink);
+        return advertViewResources;
+    }
+
     @RequestMapping(value = "/{advertId}/incrementViews", method = RequestMethod.PUT)
     public void incrementAdvertViews(@PathVariable  Integer advertId){
         advertService.incrementAdvertViews(advertId);
