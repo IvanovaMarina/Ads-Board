@@ -1,6 +1,22 @@
 # Ads-Board
 Restful API. Adverts board.					
-			
+
+[Аутентификация пользователя](#Аутентификация-пользователя)<br>
+[Регистрация пользователя](#Регистрация-пользователя)<br>
+[Извлечение категорий объявлений](#Извлечение-категорий-объявлений)<br>
+[Извлечение подкатегорий объявлений](#Извлечение-подкатегорий-объявлений)<br>
+[Извлечение возможных валют](#Извлечение-возможных-валют)<br>
+[Извлечение возможных маркеров](#Извлечение-возможных-маркеров)<br>
+[Извлечение объявления](#Извлечение-объявления)<br>
+[Добавление объявления](#Добавление-объявления)<br>
+[Извлечение страницы объявлений](#Извлечение-страницы-объявлений)<br>
+[Увеличение просмотров объявления](#Увеличение-просмотров-объявления)<br>
+[Изменение данных о пользователе](#Изменение-данных-о-пользователе)<br>
+[Изменение данных о пользователе](#Изменение-данных-о-пользователе)<br>
+[Изменение данных об объявлении](#Изменение-данных-об-объявлении)<br>
+[Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
+
+
 # Аутентификация пользователя		
 url	/users/login		
 method	GET		
@@ -101,15 +117,21 @@ body
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&categoryId=1"
           }
         },
         "id": 1
       },
       {
-        "name": "Промшленность",
+        "name": "Бытовая техника",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/2"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&categoryId=2"
           }
         },
         "id": 2
@@ -139,22 +161,40 @@ body
   "_embedded": {
     "subcategories": [
       {
-        "name": "Грузовики",
+        "name": "Легковые",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1/subcategories/1"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=1"
           }
         },
         "id": 1
       },
       {
-        "name": "Легковые",
+        "name": "Грузовики",
         "_links": {
           "self": {
             "href": "http://localhost:8080/categories/1/subcategories/2"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=2"
           }
         },
         "id": 2
+      },
+      {
+        "name": "Прицепы",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/categories/1/subcategories/3"
+          },
+          "adverts": {
+            "href": "http://localhost:8080/adverts?page=1&size=2&subcategoryId=3"
+          }
+        },
+        "id": 3
       }
     ]
   },
@@ -208,7 +248,7 @@ body
 }
 ```
 			
-# Извлечение возможных маркеров(пометок)		
+# Извлечение возможных маркеров		
 url	/markers		
 method	GET		
 			
@@ -666,5 +706,162 @@ Status: 401 Unauthorized
   "exception": "main.java.controller.UnauthorizedUserException",
   "message": "Wrong authentication data.",
   "path": "/users/1"
+}
+```
+
+# Изменение данных об объявлении
+url	/adverts/{id}<br>
+method	PUT
+
+Request			
+header	Authorization	Basic login:password	
+body
+```json
+{
+        "title": "DVD-плеер1",
+        "description": "Lorem ipsum.Lorem ipsum.",
+        "tags": [
+          {
+            "name": "random_tag"
+          },
+          {
+            "name": "new_tag"
+          },
+          {
+            "name": "hvgv"
+          }
+        ],
+        "price": 12001,
+        "owner": {
+          "id": 1
+        },
+        "region": {
+          "id": 1
+        },
+        "subcategory": {
+          "id": 3
+        },
+        "marker": {
+          "id": 1
+        },
+        "currency": {
+          "id": 1
+        }
+      }
+```
+			
+Response			
+body
+```json
+{
+  "title": "DVD-плеер1",
+  "description": "Lorem ipsum.Lorem ipsum.",
+  "addTime": "2016-12-01T00:29:49",
+  "views": 17,
+  "tags": [
+    {
+      "name": "random_tag",
+      "id": 3
+    },
+    {
+      "name": "new_tag",
+      "id": 6
+    },
+    {
+      "name": "hvgv",
+      "id": 7
+    }
+  ],
+  "price": 12001,
+  "id": 28,
+  "owner": {
+    "name": "Богдан",
+    "surname": "Федорончук",
+    "phone": "0963458465",
+    "email": "haistler@ukr.net",
+    "id": 1
+  },
+  "region": {
+    "name": "Одесская область",
+    "id": 1
+  },
+  "country": {
+    "name": "Украина",
+    "id": 1
+  },
+  "category": {
+    "name": "Автомобили",
+    "id": 1
+  },
+  "subcategory": {
+    "name": "Прицепы",
+    "id": 3
+  },
+  "marker": {
+    "name": "Срочно",
+    "id": 1
+  },
+  "currency": {
+    "abbreviation": "грн",
+    "id": 1
+  }
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-03T21:31:41.862+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/adverts/28"
+}
+```
+
+# Извлечение случайных тегов
+url	/adverts/randomTags?amount={intValue}	
+method	GET		
+			
+Request			
+\-			
+			
+Response			
+body
+```json
+[
+  {
+    "name": "hvgv",
+    "links": [
+      {
+        "rel": "adverts",
+        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=hvgv"
+      }
+    ],
+    "id": 7
+  },
+  {
+    "name": "random_tag",
+    "links": [
+      {
+        "rel": "adverts",
+        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=random_tag"
+      }
+    ],
+    "id": 3
+  }
+]
+```
+error	
+Status: 400 Bad Request
+```json
+{
+  "timestamp": "2016-12-03T22:42:03.807+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "exception": "main.java.service.TagException",
+  "message": "Tag amount must be more then 0.",
+  "path": "/adverts/randomTags"
 }
 ```
