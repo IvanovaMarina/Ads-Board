@@ -706,3 +706,114 @@ Status: 401 Unauthorized
   "path": "/users/1"
 }
 ```
+
+# Изменение данных об объявлении
+url	/adverts/{id}
+method	PUT
+
+Request			
+header	Authorization	Basic login:password	
+body
+```json
+{
+        "title": "DVD-плеер1",
+        "description": "Lorem ipsum.Lorem ipsum.",
+        "tags": [
+          {
+            "name": "random_tag"
+          },
+          {
+            "name": "new_tag"
+          },
+          {
+            "name": "hvgv"
+          }
+        ],
+        "price": 12001,
+        "owner": {
+          "id": 1
+        },
+        "region": {
+          "id": 1
+        },
+        "subcategory": {
+          "id": 3
+        },
+        "marker": {
+          "id": 1
+        },
+        "currency": {
+          "id": 1
+        }
+      }
+```
+			
+Response			
+body
+```json
+{
+  "title": "DVD-плеер1",
+  "description": "Lorem ipsum.Lorem ipsum.",
+  "addTime": "2016-12-01T00:29:49",
+  "views": 17,
+  "tags": [
+    {
+      "name": "random_tag",
+      "id": 3
+    },
+    {
+      "name": "new_tag",
+      "id": 6
+    },
+    {
+      "name": "hvgv",
+      "id": 7
+    }
+  ],
+  "price": 12001,
+  "id": 28,
+  "owner": {
+    "name": "Богдан",
+    "surname": "Федорончук",
+    "phone": "0963458465",
+    "email": "haistler@ukr.net",
+    "id": 1
+  },
+  "region": {
+    "name": "Одесская область",
+    "id": 1
+  },
+  "country": {
+    "name": "Украина",
+    "id": 1
+  },
+  "category": {
+    "name": "Автомобили",
+    "id": 1
+  },
+  "subcategory": {
+    "name": "Прицепы",
+    "id": 3
+  },
+  "marker": {
+    "name": "Срочно",
+    "id": 1
+  },
+  "currency": {
+    "abbreviation": "грн",
+    "id": 1
+  }
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-03T21:31:41.862+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/adverts/28"
+}
+```
