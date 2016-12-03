@@ -2,8 +2,10 @@ package main.java.controller;
 
 
 import main.java.entity.Advert;
+import main.java.entity.Tag;
 import main.java.service.AdvertService;
 import main.java.view.AdvertView;
+import main.java.view.TagView;
 import main.java.view.UserView;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -210,10 +212,25 @@ public class AdvertController extends AbstractController{
                                    @RequestBody AdvertView advertView,
                                    @RequestHeader HttpHeaders headers){
         authorize(headers);
+        advertView.setAdvertId(advertId);
         Advert updatedAdvert = advertService.update(advertView.toAdvert());
         AdvertView updatedAdvertView = new AdvertView(updatedAdvert);
 
         return updatedAdvertView;
+    }
+
+    @RequestMapping(value = "/randomTags", params = {"amount"}, method = RequestMethod.GET)
+    public List<TagView> getRandomTags(@RequestParam("amount") Integer amount){
+        return advertService.getRandomTags(amount).stream()
+                .map(tag -> {
+                    TagView tagView = new TagView(tag);
+                    Link advertsLink = ControllerLinkBuilder
+                            .linkTo(ControllerLinkBuilder
+                                    .methodOn(AdvertController.class).getAdvertsByTag(1, 2, tag.getName()))
+                            .withRel("adverts");
+                    tagView.add(advertsLink);
+                    return tagView;
+                }).collect(Collectors.toList());
     }
 
     public void setAdvertService(AdvertService advertService) {

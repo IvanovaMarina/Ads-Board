@@ -35,7 +35,13 @@ public class CategoryController {
                 .map(category -> {
                     CategoryView categoryView = new CategoryView(category);
                     Link categoryLink = new Link(categoriesLink.getHref() + "/" + category.getId(), "self");
+                    Link advertsLink = ControllerLinkBuilder
+                            .linkTo(ControllerLinkBuilder
+                                    .methodOn(AdvertController.class)
+                                    .getAdvertsByCategory(1, 2, category.getId()))
+                            .withRel("adverts");
                     categoryView.add(categoryLink);
+                    categoryView.add(advertsLink);
                     return categoryView;
                 })
                 .collect(Collectors.toList());
@@ -55,7 +61,13 @@ public class CategoryController {
                     subcategoryView.setName(subcategory.getName());
                     subcategoryView.setSubcategoryId(subcategory.getId());
                     Link subcategoryLink = new Link(subcategoriesLink.getHref() + "/" + subcategory.getId(), "self");
+                    Link advertsLink = ControllerLinkBuilder
+                            .linkTo(ControllerLinkBuilder
+                                    .methodOn(AdvertController.class)
+                                    .getAdvertsBySubcategory(1, 2, subcategory.getId()))
+                            .withRel("adverts");
                     subcategoryView.add(subcategoryLink);
+                    subcategoryView.add(advertsLink);
                     return subcategoryView;
                 })
                 .collect(Collectors.toList());

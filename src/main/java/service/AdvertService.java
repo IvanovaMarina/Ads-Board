@@ -2,6 +2,7 @@ package main.java.service;
 
 
 import main.java.entity.Advert;
+import main.java.entity.Tag;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface AdvertService {
     int getCategoryLastPage(int pageSize, Integer categoryId);
     int getSubcategoryLastPage(int pageSize, Integer subcategoryId);
     int getNameLastTagPage(int pageSize, String name);
+    List<Tag> getRandomTags(int amount);
 }

@@ -4,10 +4,9 @@ import main.java.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class TagRepository {
@@ -53,6 +52,32 @@ public class TagRepository {
             exception.printStackTrace();
             throw new DBAccessException(exception.getMessage());
         }
+    }
+
+    public List<Tag> getAllTags(){
+        List<Tag> tags = new ArrayList<>();
+        try {
+            String selectTagQuery =
+                    "SELECT tag.id_tag AS id_tag, tag.name AS name, count(advert_tag.id_tag) AS amount \n" +
+                            "FROM tag\n" +
+                            "LEFT JOIN advert_tag\n" +
+                            "\tON tag.id_tag = advert_tag.id_tag\n" +
+                            "GROUP BY(id_tag)\n";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectTagQuery);
+
+            while(resultSet.next()){
+                Tag tag = new Tag(resultSet.getInt("id_tag"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("amount"));
+                tags.add(tag);
+            }
+
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+        return tags;
     }
 
     public void setConnection(Connection connection) {

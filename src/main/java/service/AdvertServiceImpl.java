@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service("advertService")
 public class AdvertServiceImpl implements AdvertService{
@@ -206,6 +208,23 @@ public class AdvertServiceImpl implements AdvertService{
         existingAdvert.setTags(advert.getTags());
 
         return advertRepository.update(existingAdvert);
+    }
+
+    @Override
+    public List<Tag> getRandomTags(int amount) {
+        if(amount <= 0){
+            throw new TagException("Tag amount must be more then 0.");
+        }
+        List<Tag> allTags = tagRepository.getAllTags();
+        List<Tag> tags = new ArrayList<>();
+        Random random = new Random();
+
+        for(int i = Math.min(amount, allTags.size()); i > 0; i--){
+            int tagToAddIndex = random.nextInt(allTags.size());
+            tags.add(allTags.get(tagToAddIndex));
+            allTags.remove(tagToAddIndex);
+        }
+        return tags;
     }
 
     public void setAdvertRepository(AdvertRepository advertRepository) {
