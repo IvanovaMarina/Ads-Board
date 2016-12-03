@@ -1,6 +1,8 @@
 # Ads-Board
 Restful API. Adverts board.					
-			
+
+[create an anchor](#anchors-in-markdown)
+
 # Аутентификация пользователя		
 url	/users/login		
 method	GET		
