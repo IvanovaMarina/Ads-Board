@@ -159,6 +159,36 @@ public class AdvertController extends AbstractController{
         return advertViewResources;
     }
 
+    @RequestMapping(params = {"page", "size", "subcategoryId"}, method = RequestMethod.GET)
+    public Resources<AdvertView> getAdvertsBySubcategory(@RequestParam("page") Integer page,
+                                                      @RequestParam("size") Integer size,
+                                                      @RequestParam( "subcategoryId") Integer subcategoryId){
+        List<AdvertView> advertViews = advertService.getAdvertsBySubcategory(page, size, subcategoryId).stream()
+                .map(advert -> convertAdvertToView(advert))
+                .collect(Collectors.toList());
+        Link firstPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsBySubcategory(1, size, subcategoryId))
+                .withRel("firstPage");
+        Link curPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsBySubcategory(page, size, subcategoryId))
+                .withRel("currentPage");
+        Link lastPageLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(AdvertController.class)
+                        .getAdvertsBySubcategory(advertService.getSubcategoryLastPage(size, subcategoryId),
+                                size, subcategoryId))
+                .withRel("lastPage");
+        Resources<AdvertView> advertViewResources = new Resources<>(advertViews);
+        advertViewResources.add(firstPageLink);
+        advertViewResources.add(curPageLink);
+        advertViewResources.add(lastPageLink);
+        return advertViewResources;
+    }
+
     @RequestMapping(value = "/{advertId}/incrementViews", method = RequestMethod.PUT)
     public void incrementAdvertViews(@PathVariable  Integer advertId){
         advertService.incrementAdvertViews(advertId);

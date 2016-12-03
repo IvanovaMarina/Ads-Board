@@ -20,7 +20,7 @@ public class AdvertServiceTest {
         getLastPageTest(3);
 
         getAdvertsTest(1, 3);*/
-        advertService.getAdvertsByTag(1, 5, "new_tag").stream().forEach(System.out::println);
+        advertService.getAdvertsBySubcategory(1, 5, 1).stream().forEach(System.out::println);
     }
 
     private static void getLastPageTest(int pageSize){

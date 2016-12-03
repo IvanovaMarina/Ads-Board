@@ -163,7 +163,7 @@ public class AdvertServiceImpl implements AdvertService{
 
     @Override
     public int getSubcategoryLastPage(int pageSize, Integer subcategoryId) {
-        return 0;
+        return calculateLastPage(advertRepository.countWithSubcategory(subcategoryId), pageSize);
     }
 
     @Override
