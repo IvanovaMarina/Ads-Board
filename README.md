@@ -14,6 +14,7 @@ Restful API. Adverts board.
 [Изменение данных о пользователе](#Изменение-данных-о-пользователе)<br>
 [Изменение данных о пользователе](#Изменение-данных-о-пользователе)<br>
 [Изменение данных об объявлении](#Изменение-данных-об-объявлении)<br>
+[Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
 
 
 # Аутентификация пользователя		
@@ -816,5 +817,51 @@ Status: 401 Unauthorized
   "exception": "main.java.controller.UnauthorizedUserException",
   "message": "Wrong authentication data.",
   "path": "/adverts/28"
+}
+```
+
+# Извлечение случайных тегов
+url	/adverts/randomTags?amount={intValue}	
+method	GET		
+			
+Request			
+\-			
+			
+Response			
+body
+```json
+[
+  {
+    "name": "hvgv",
+    "links": [
+      {
+        "rel": "adverts",
+        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=hvgv"
+      }
+    ],
+    "id": 7
+  },
+  {
+    "name": "random_tag",
+    "links": [
+      {
+        "rel": "adverts",
+        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=random_tag"
+      }
+    ],
+    "id": 3
+  }
+]
+```
+error	
+Status: 400 Bad Request
+```json
+{
+  "timestamp": "2016-12-03T22:42:03.807+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "exception": "main.java.service.TagException",
+  "message": "Tag amount must be more then 0.",
+  "path": "/adverts/randomTags"
 }
 ```
