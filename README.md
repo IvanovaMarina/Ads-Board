@@ -833,17 +833,19 @@ body
 ```json
 [
   {
-    "name": "hvgv",
+    "name": "б/у",
+    "advertsAmount": 3,
     "links": [
       {
         "rel": "adverts",
-        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=hvgv"
+        "href": "http://localhost:8080/adverts?page=1&size=2&tagName=new_tag"
       }
     ],
-    "id": 7
+    "id": 1
   },
   {
     "name": "random_tag",
+    "advertsAmount": 4,
     "links": [
       {
         "rel": "adverts",
