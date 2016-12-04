@@ -15,6 +15,7 @@ Restful API. Adverts board.
 [Изменение данных о пользователе](#Изменение-данных-о-пользователе)<br>
 [Изменение данных об объявлении](#Изменение-данных-об-объявлении)<br>
 [Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
+[Удаление объявления](#Удаление-объявления)<br>
 
 
 # Аутентификация пользователя		
@@ -866,5 +867,83 @@ Status: 400 Bad Request
   "exception": "main.java.service.TagException",
   "message": "Tag amount must be more then 0.",
   "path": "/adverts/randomTags"
+}
+```
+
+# Удаление объявления
+url	/adverts/{id}
+method	DELETE		
+comment: owner and admin have access
+
+Request			
+\-			
+			
+Response			
+body
+```JSON
+{
+  "title": "New ad2",
+  "description": "My description. Lorem ipsum.",
+  "addTime": "2016-11-30T19:41:32",
+  "views": 6,
+  "tags": [
+    {
+      "name": "б/у",
+      "id": 1
+    },
+    {
+      "name": "random_tag",
+      "id": 3
+    },
+    {
+      "name": "new_tag",
+      "id": 6
+    }
+  ],
+  "price": 112,
+  "id": 26,
+  "owner": {
+    "name": "Богдан",
+    "surname": "Федорончук",
+    "phone": "0963458465",
+    "email": "haistler@ukr.net",
+    "id": 1
+  },
+  "region": {
+    "name": "Одесская область",
+    "id": 1
+  },
+  "country": {
+    "name": "Украина",
+    "id": 1
+  },
+  "category": {
+    "name": "Автомобили",
+    "id": 1
+  },
+  "subcategory": {
+    "name": "Легковые",
+    "id": 1
+  },
+  "marker": {
+    "name": "Срочно",
+    "id": 1
+  },
+  "currency": {
+    "abbreviation": "грн",
+    "id": 1
+  }
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-04T17:52:20.005+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/adverts/26"
 }
 ```
