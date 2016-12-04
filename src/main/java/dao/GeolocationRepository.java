@@ -74,4 +74,8 @@ public class GeolocationRepository {
         }
         return region;
     }
+
+    public Region deleteRegion(Integer id) {
+        return null;
+    }
 }
