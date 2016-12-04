@@ -18,10 +18,10 @@ public interface AdvertService {
     List<Advert> getAdvertsByTag(int page, int size, String tagName);
     List<Advert> getAdvertsByCategory(int page, int size, Integer categoryId);
     List<Advert> getAdvertsBySubcategory(int page, int size, Integer subcategoryId);
-    List<Advert> getAdvertsByName(int page, int size, String name);
+    List<Advert> getAdvertsByTitle(int page, int size, String title);
     int getTagLastPage(int pageSize, String tagName);
     int getCategoryLastPage(int pageSize, Integer categoryId);
     int getSubcategoryLastPage(int pageSize, Integer subcategoryId);
-    int getNameLastTagPage(int pageSize, String name);
+    int getTitleLastPage(int pageSize, String title);
     List<Tag> getRandomTags(int amount);
 }

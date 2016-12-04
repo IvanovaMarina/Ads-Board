@@ -141,11 +141,11 @@ public class AdvertServiceImpl implements AdvertService{
     }
 
     @Override
-    public List<Advert> getAdvertsByName(int page, int size, String name) {
+    public List<Advert> getAdvertsByTitle(int page, int size, String title) {
         checkPageParams(page, size);
         int limit = size;
         int offset = (page - 1) * size;
-        return advertRepository.getAdvertsByName(limit, offset, name);
+        return advertRepository.getAdvertsByTitle(limit, offset, title);
     }
 
     @Override
@@ -169,8 +169,8 @@ public class AdvertServiceImpl implements AdvertService{
     }
 
     @Override
-    public int getNameLastTagPage(int pageSize, String name) {
-        return 0;
+    public int getTitleLastPage(int pageSize, String title) {
+        return calculateLastPage(advertRepository.countWithTitle(title), pageSize);
     }
 
     private int calculateLastPage(int amount, int pageSize) {

@@ -17,9 +17,9 @@ public interface AdvertRepository {
     List<Advert> getAdvertsByTag(int limit, int offset, String tagName);
     List<Advert> getAdvertsByCategory(int limit, int offset, Integer categoryId);
     List<Advert> getAdvertsBySubcategory(int limit, int offset, Integer subcategoryId);
-    List<Advert> getAdvertsByName(int limit, int offset, String name);
+    List<Advert> getAdvertsByTitle(int limit, int offset, String title);
     int countWithTag(String tagName);
     int countWithCategory(Integer categoryId);
     int countWithSubcategory(Integer subcategoryId);
-    int countWithName(String name);
+    int countWithTitle(String title);
 }

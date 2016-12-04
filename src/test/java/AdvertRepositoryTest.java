@@ -1,13 +1,8 @@
 package test.java;
 
 
-import main.java.dao.AdvertRepository;
 import main.java.dao.AdvertRepositoryImpl;
 import main.java.dao.ConnectionManager;
-import main.java.entity.Advert;
-import main.java.entity.Currency;
-import main.java.entity.Subcategory;
-import main.java.entity.Tag;
 
 public class AdvertRepositoryTest {
 
@@ -48,7 +43,8 @@ public class AdvertRepositoryTest {
         advertRepository.update(advert);
         System.out.println(advertRepository.update(advert));*/
 
-        System.out.println(advertRepository.countWithTag("hvgv"));
+        advertRepository.getAdvertsByTitle(5, 0, " AD ").stream().forEach(System.out::println);
+        System.out.println(advertRepository.countWithTitle(" пл "));
     }
 
     private static void selectPageTest(){
