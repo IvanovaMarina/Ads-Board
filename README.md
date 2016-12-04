@@ -225,22 +225,37 @@ body
       {
         "name": "Одесская область",
         "_links": {
-          "self": {
-            "href": "http://localhost:8080/geolocation/regions/1"
-          }
+          "self": [
+            {
+              "href": "http://localhost:8080/geolocation/regions/1"
+            },
+            {
+              "href": "http://localhost:8080/geolocation/regions/1"
+            }
+          ]
         },
         "id": 1
       },
       {
         "name": "Винницкая область",
         "_links": {
-          "self": {
-            "href": "http://localhost:8080/geolocation/regions/2"
-          }
+          "self": [
+            {
+              "href": "http://localhost:8080/geolocation/regions/2"
+            },
+            {
+              "href": "http://localhost:8080/geolocation/regions/2"
+            }
+          ]
         },
         "id": 2
       }
     ]
+  },
+  "_links": {
+    "linkToAdd": {
+      "href": "http://localhost:8080/geolocation/regions"
+    }
   }
 }
 ```
