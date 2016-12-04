@@ -3,6 +3,8 @@ package main.java.controller;
 
 import main.java.entity.Advert;
 import main.java.entity.Tag;
+import main.java.entity.User;
+import main.java.service.AdvertNotFoundException;
 import main.java.service.AdvertService;
 import main.java.view.AdvertView;
 import main.java.view.ListElementTagView;
@@ -233,9 +235,18 @@ public class AdvertController extends AbstractController{
     }
 
     @RequestMapping(value = "/{advertId}", method = RequestMethod.DELETE)
-    public void deleteAdvert(@PathVariable Integer advertId, @RequestHeader HttpHeaders headers){
-
-        //TODO: доделать удаление (удаляет или юзер который добавил или админ)
+    public AdvertView deleteAdvert(@PathVariable Integer advertId, @RequestHeader HttpHeaders headers){
+        User user = authorize(headers);
+        Advert advert = advertService.getOne(advertId);
+        if(advert == null){
+            throw new AdvertNotFoundException("Advert not found.");
+        }
+        if(user.isAdmin() || user.getId() == advert.getOwner().getId()){
+            return new AdvertView(advertService.remove(advertId));
+        }
+        else{
+            throw new UnauthorizedUserException("Only admin and owner can delete this advert.");
+        }
     }
 
     @RequestMapping(value = "/{advertId}", method = RequestMethod.PUT)

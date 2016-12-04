@@ -8,13 +8,14 @@ import java.util.List;
 
 public interface AdvertService {
     Advert add(Advert advert);
+    Advert update(Advert advert);
     Advert getOne(Integer id);
+    Advert remove(Integer id);
     void saveImage(Integer advertId, byte[] bytes);
     byte[] getImage(Integer advertId);
     List<Advert> getAdverts(int page, int size);
     int getLastPage(int pageSize);
     void incrementAdvertViews(Integer id);
-    Advert update(Advert advert);
     List<Advert> getAdvertsByTag(int page, int size, String tagName);
     List<Advert> getAdvertsByCategory(int page, int size, Integer categoryId);
     List<Advert> getAdvertsBySubcategory(int page, int size, Integer subcategoryId);

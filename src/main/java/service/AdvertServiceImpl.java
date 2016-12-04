@@ -57,6 +57,14 @@ public class AdvertServiceImpl implements AdvertService{
         return advertRepository.getOne(id);
     }
 
+    @Override
+    public Advert remove(Integer id) {
+        checkAdvertExisting(id);
+        Advert advert = advertRepository.remove(id);
+        imageUtil.deleteImage(advert.getPhotoPath());
+        return advert;
+    }
+
     private boolean validate(Advert advert) {
         //TODO: сделать валидацию объявления и кидать исключение
         return true;

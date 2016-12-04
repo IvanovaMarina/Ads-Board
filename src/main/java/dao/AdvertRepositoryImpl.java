@@ -230,6 +230,29 @@ public class AdvertRepositoryImpl implements AdvertRepository {
     }
 
     @Override
+    public Advert remove(Integer id) {
+        Advert advert = getOne(id);
+        if(advert != null){
+            String deleteAdvertQuery = "delete from advert\n" +
+                    "where id_ad = ?";
+            String deleteTagsQuery = "delete from advert_tag\n" +
+                    "where id_ad = ?";
+            try{
+                PreparedStatement deleteAdvertStatement = connection.prepareStatement(deleteAdvertQuery);
+                PreparedStatement deleteTagsStatement = connection.prepareStatement(deleteTagsQuery);
+                deleteAdvertStatement.setInt(1, id);
+                deleteTagsStatement.setInt(1, id);
+                deleteAdvertStatement.execute();
+                deleteTagsStatement.execute();
+            }catch(SQLException exception){
+                exception.printStackTrace();
+                throw new DBAccessException(exception.getMessage());
+            }
+        }
+        return advert;
+    }
+
+    @Override
     public List<Advert> getAdverts(int limit, int offset) {
         List<Advert> adverts = new ArrayList<>();
         try{

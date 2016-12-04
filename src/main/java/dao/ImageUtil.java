@@ -40,4 +40,9 @@ public class ImageUtil {
         byte[] imageBytes = Files.readAllBytes(file.toPath());
         return imageBytes;
     }
+
+    public boolean deleteImage(String imagePath){
+        File image = new File(imagePath);
+        return image.delete();
+    }
 }
