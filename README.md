@@ -16,6 +16,7 @@ Restful API. Adverts board.
 [Изменение данных об объявлении](#Изменение-данных-об-объявлении)<br>
 [Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
 [Удаление объявления](#Удаление-объявления)<br>
+[Удаление региона]((#Удаление-региона)<br>)<br>
 
 
 # Аутентификация пользователя		
@@ -945,5 +946,34 @@ Status: 401 Unauthorized
   "exception": "main.java.controller.UnauthorizedUserException",
   "message": "Wrong authentication data.",
   "path": "/adverts/26"
+}
+```
+
+# Удаление региона
+url	/geolocation/regions/{id}
+method	DELETE		
+comment: only admin have access
+
+Request			
+\-			
+			
+Response			
+body
+```json
+{
+  "name": "Random region",
+  "id": 5
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-04T20:10:35.644+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Only admin is allowed to perform this action.",
+  "path": "/geolocation/regions/5"
 }
 ```
