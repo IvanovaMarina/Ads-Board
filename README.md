@@ -498,7 +498,8 @@ Status: 401 Unauthorized
 ```
 
 # Извлечение страницы объявлений		
-url	/adverts?page={intValue}&size={intValue}[&tagName={textParam} | &categoryId={intValue} | &subcategoryId={intValue} &title={textParam}]
+url	/adverts?page={intValue}&size={intValue} [&tagName={textParam} | &categoryId={intValue} | 
+						 &subcategoryId={intValue} &title={textParam}]
 method	GET		
 			
 Request			
