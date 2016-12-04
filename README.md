@@ -950,7 +950,7 @@ Status: 401 Unauthorized
 ```
 
 # Удаление региона
-url	/geolocation/regions/{id}
+url	/geolocation/regions/{id}<br>
 method	DELETE		
 comment: only admin have access
 
