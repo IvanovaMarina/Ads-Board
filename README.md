@@ -5,6 +5,7 @@ Restful API. Adverts board.
 [Регистрация пользователя](#Регистрация-пользователя)<br>
 [Извлечение категорий объявлений](#Извлечение-категорий-объявлений)<br>
 [Извлечение подкатегорий объявлений](#Извлечение-подкатегорий-объявлений)<br>
+[Извлечение регионов](#Извлечение-регионов)<br>
 [Извлечение возможных валют](#Извлечение-возможных-валют)<br>
 [Извлечение возможных маркеров](#Извлечение-возможных-маркеров)<br>
 [Извлечение объявления](#Извлечение-объявления)<br>
@@ -16,6 +17,7 @@ Restful API. Adverts board.
 [Изменение данных об объявлении](#Изменение-данных-об-объявлении)<br>
 [Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
 [Удаление объявления](#Удаление-объявления)<br>
+[Удаление региона](#Удаление-региона)<br>
 
 
 # Аутентификация пользователя		
@@ -206,7 +208,47 @@ body
   }
 }
 ```
+
+# Извлечение регионов		
+url	/geolocation/countries/{countryId}/regions	
+method	GET		
 			
+Request			
+\-			
+			
+Response			
+body	
+```json
+{
+  "_embedded": {
+    "regions": [
+      {
+        "name": "Одесская область",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/geolocation/regions/1"
+          }
+        },
+        "id": 1
+      },
+      {
+        "name": "Винницкая область",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/geolocation/regions/2"
+          }
+        },
+        "id": 2
+      }
+    ]
+  },
+  "_links": {
+    "linkToAdd": {
+      "href": "http://localhost:8080/geolocation/regions"
+    }
+  }
+}
+```
 			
 # Извлечение возможных валют		
 url	/currencies		
@@ -945,5 +987,34 @@ Status: 401 Unauthorized
   "exception": "main.java.controller.UnauthorizedUserException",
   "message": "Wrong authentication data.",
   "path": "/adverts/26"
+}
+```
+
+# Удаление региона
+url	/geolocation/regions/{id}<br>
+method	DELETE		
+comment: only admin have access
+
+Request			
+\-			
+			
+Response			
+body
+```json
+{
+  "name": "Random region",
+  "id": 5
+}
+```
+error	
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-04T20:10:35.644+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Only admin is allowed to perform this action.",
+  "path": "/geolocation/regions/5"
 }
 ```
