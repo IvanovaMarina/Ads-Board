@@ -24,49 +24,26 @@ public class AdvertView extends ResourceSupport{
 
     @JsonProperty(value = "owner")
     private UserView userView;
-    /*
-    private Integer userId;
-    private String userName;
-    private String userSurname;
-    private String phone;
-    private String email;
-    */
+
     @JsonProperty(value = "region")
     private RegionView regionView;
     @JsonProperty(value = "country")
     private CountryView countryView;
-    /*
-    private Integer regionId;
-    private String regionName;
-    private Integer countryId;
-    private String countryName;
-    */
+
 
     @JsonProperty(value = "category")
     private CategoryView categoryView;
     @JsonProperty(value = "subcategory")
     private SubcategoryView subcategoryView;
-    /*
-    private Integer categoryId;
-    private String categoryName;
-    private Integer subcategoryId;
-    private String subcategoryName;
-    */
+
     @JsonProperty(value = "marker")
     private MarkerView markerView;
-    /*
-    private Integer markerId;
-    private String markerName;
-    */
-    private List<TagView> tags = new ArrayList<>();
 
+    private List<TagView> tags = new ArrayList<>();
     private Double price;
+
     @JsonProperty(value = "currency")
     private CurrencyView currencyView;
-    /*
-    private Integer currencyId;
-    private String currencyAbbreviation;
-    */
     public AdvertView(){}
 
     public AdvertView(Advert advert){

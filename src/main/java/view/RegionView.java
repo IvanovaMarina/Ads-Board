@@ -1,6 +1,7 @@
 package main.java.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import main.java.entity.Country;
 import main.java.entity.Region;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.core.Relation;
@@ -11,6 +12,8 @@ public class RegionView extends ResourceSupport{
     @JsonProperty("id")
     private Integer regionId;
     private String name;
+    @JsonProperty(value = "country", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer coutryId;
 
     public RegionView(){}
     public RegionView(Region region) {
@@ -38,6 +41,9 @@ public class RegionView extends ResourceSupport{
         Region region = new Region();
         region.setId(this.getRegionId());
         region.setName(this.getName());
+        Country country = new Country();
+        country.setId(coutryId);
+        region.setCountry(country);
         return region;
     }
 }

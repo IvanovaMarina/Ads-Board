@@ -26,4 +26,16 @@ public class GeolocationService {
     public Region getOneRegion(Integer id){
         return geolocationRepository.getOneRegion(id);
     }
+
+    public Region deleteRegion(Integer id) {
+        return geolocationRepository.deleteRegion(id);
+    }
+
+    public Region addRegion(Region region) {
+        Region existingRegion = geolocationRepository.getOneRegion(region.getName());
+        if (existingRegion == null) {
+            return geolocationRepository.addRegion(region);
+        }
+        return existingRegion;
+    }
 }

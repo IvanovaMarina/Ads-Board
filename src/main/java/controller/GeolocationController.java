@@ -1,10 +1,12 @@
 package main.java.controller;
 
 
+import main.java.entity.Region;
 import main.java.service.GeolocationService;
 import main.java.view.CountryView;
 import main.java.view.RegionView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/geolocation")
-public class GeolocationController {
+public class GeolocationController extends AbstractController {
 
     @Autowired
     private GeolocationService geolocationService;
@@ -43,10 +45,32 @@ public class GeolocationController {
         return countryViewResources;
     }
 
-    /*@RequestMapping(value = "/countries/{id}", method = RequestMethod.DELETE)
-    public void deleteCountry(@RequestHeader HttpHeaders httpHeaders, @PathVariable Integer id){
-        System.out.println(httpHeaders.get(HttpHeaders.AUTHORIZATION));
-    }*/
+
+    @RequestMapping(value = "/regions/{id}", method = RequestMethod.DELETE)
+    public RegionView deleteRegion(@RequestHeader HttpHeaders httpHeaders, @PathVariable Integer id) {
+        adminAuthorize(httpHeaders);
+        RegionView regionView = new RegionView(geolocationService.deleteRegion(id));
+        return regionView;
+    }
+
+    @RequestMapping(value = "/regions", method = RequestMethod.POST)
+    public RegionView addRegion(@RequestHeader HttpHeaders httpHeaders, @RequestBody RegionView regionView) {
+        adminAuthorize(httpHeaders);
+        Region addedRegion = geolocationService.addRegion(regionView.toRegion());
+        return new RegionView(addedRegion);
+    }
+
+    @RequestMapping(value = "/regions/{id}", method = RequestMethod.PUT)
+    public RegionView updateRegion(@RequestHeader HttpHeaders httpHeaders,
+                                   @PathVariable Integer id,
+                                   @RequestBody RegionView regionView) {
+        adminAuthorize(httpHeaders);
+
+        regionView.setRegionId(id);
+
+        return null;
+    }
+
     @RequestMapping(value = "/countries/{id}", method = RequestMethod.DELETE)
     public CountryView deleteCountry(@RequestHeader HttpHeaders httpHeaders, @PathVariable Integer id){
         return null;
@@ -61,9 +85,20 @@ public class GeolocationController {
     public Resources<RegionView> getRegions(@PathVariable Integer countryId){
         List<RegionView> regions = geolocationService.getRegions(countryId).stream()
                 .map(region->{
-                    return new RegionView(region);
+                    RegionView regionView = new RegionView(region);
+                    Link link = ControllerLinkBuilder
+                            .linkTo(ControllerLinkBuilder
+                                    .methodOn(GeolocationController.class).deleteRegion(null, region.getId()))
+                            .withSelfRel();
+                    regionView.add(link);
+                    return regionView;
                 }).collect(Collectors.toList());
         Resources<RegionView> regionViews = new Resources<>(regions);
+        Link addRegionLink = ControllerLinkBuilder
+                .linkTo(ControllerLinkBuilder
+                        .methodOn(GeolocationController.class).addRegion(null, null))
+                .withRel("linkToAdd");
+        regionViews.add(addRegionLink);
         return regionViews;
     }
 }
