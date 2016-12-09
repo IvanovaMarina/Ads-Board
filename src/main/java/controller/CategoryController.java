@@ -1,7 +1,6 @@
 package main.java.controller;
 
 
-import main.java.entity.Subcategory;
 import main.java.service.CategoryService;
 import main.java.view.CategoryView;
 import main.java.view.SubcategoryView;
@@ -9,17 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryController {
+public class CategoryController extends AbstractController {
 
     @Autowired
     CategoryService categoryService;
@@ -73,6 +70,22 @@ public class CategoryController {
                 .collect(Collectors.toList());
 
         Resources<SubcategoryView> subcategoryResources = new Resources<>(subcategoryList, subcategoriesLink);
+        return subcategoryResources;
+    }
+
+    @RequestMapping(value = "/subcategories/mostAdverts", method = RequestMethod.GET)
+    Resources<SubcategoryView> getSubcategoriesWithMostAdverts(@RequestHeader HttpHeaders headers) {
+        adminAuthorize(headers);
+        List<SubcategoryView> subcategoryList = categoryService.getSubcategoriesWithMostAdverts().stream()
+                .map(subcategory -> {
+                    SubcategoryView subcategoryView = new SubcategoryView();
+                    subcategoryView.setName(subcategory.getName());
+                    subcategoryView.setSubcategoryId(subcategory.getId());
+                    return subcategoryView;
+                })
+                .collect(Collectors.toList());
+
+        Resources<SubcategoryView> subcategoryResources = new Resources<>(subcategoryList);
         return subcategoryResources;
     }
 }

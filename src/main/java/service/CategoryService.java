@@ -21,4 +21,8 @@ public class CategoryService {
     public List<Subcategory> getSubcategories(Integer categoryId){
         return categoryRepository.getSubcategories(categoryId);
     }
+
+    public List<Subcategory> getSubcategoriesWithMostAdverts() {
+        return categoryRepository.getSubcategoriesWithMostAdverts();
+    }
 }

@@ -54,4 +54,40 @@ public class CategoryRepository {
         }
         return subcategories;
     }
+
+    public List<Subcategory> getSubcategoriesWithMostAdverts() {
+        List<Subcategory> subcategories = new ArrayList<>();
+        String query = "SELECT subcategory.id_scat AS id_scat, \n" +
+                "\tsubcategory.name AS name,\n" +
+                "    COUNT(id_ad) AS count\n" +
+                "FROM subcategory\n" +
+                "LEFT JOIN advert\n" +
+                "ON subcategory.id_scat = advert.id_scat\n" +
+                "GROUP BY subcategory.name\n" +
+                "HAVING count >= ALL(\n" +
+                "    SELECT COUNT(id_ad) \n" +
+                "    FROM subcategory\n" +
+                "\tLEFT JOIN advert\n" +
+                "\tON subcategory.id_scat = advert.id_scat\n" +
+                "\tGROUP BY subcategory.name\n" +
+                ")";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                Subcategory subcategory = new Subcategory();
+                subcategory.setId(resultSet.getInt("id_scat"));
+                subcategory.setName(resultSet.getString("name"));
+                subcategories.add(subcategory);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+        return subcategories;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

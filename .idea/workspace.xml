@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="711d35e2-aa8a-4e76-b51e-f934c1273dc2" name="Default" comment="Marker CRUD (HTTP-api)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/DeleteMarkerException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/MarkerAlreadyExistingException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/GeolocationRepositoryTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/MarkerRepositoryTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/CategoryRepositoryTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/main/java/controller/GeolocationController.class" afterPath="$PROJECT_DIR$/target/classes/main/java/controller/GeolocationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/main/java/dao/GeolocationRepository.class" afterPath="$PROJECT_DIR$/target/classes/main/java/dao/GeolocationRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/main/java/view/RegionView.class" afterPath="$PROJECT_DIR$/target/classes/main/java/view/RegionView.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/GeolocationController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/GeolocationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/MarkerController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/MarkerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/GeolocationRepository.java" afterPath="$PROJECT_DIR$/src/main/java/dao/GeolocationRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MarkerRepository.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MarkerRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/GeolocationService.java" afterPath="$PROJECT_DIR$/src/main/java/service/GeolocationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/MarkerService.java" afterPath="$PROJECT_DIR$/src/main/java/service/MarkerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/UserNotFoundException.java" afterPath="$PROJECT_DIR$/src/main/java/service/UserNotFoundException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/view/AdvertView.java" afterPath="$PROJECT_DIR$/src/main/java/view/AdvertView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/view/RegionView.java" afterPath="$PROJECT_DIR$/src/main/java/view/RegionView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/CategoryController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/CategoryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" afterPath="$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/CategoryService.java" afterPath="$PROJECT_DIR$/src/main/java/service/CategoryService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java" afterPath="$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java" />
     </list>
     <ignored path="Adverts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,12 +41,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MarkerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/MarkerController.java">
+      <file leaf-file-name="CategoryRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="87">
+              <caret line="57" column="62" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="62" />
+              <folding>
+                <element signature="e#3483#3484#0" expanded="true" />
+                <element signature="e#3527#3528#0" expanded="true" />
+                <marker date="1481325209704" expanded="true" signature="636:669" ph="SELECT id_ca... category" />
+                <marker date="1481325209704" expanded="true" signature="1365:1424" ph="SELECT id_sc... subcategory" />
+                <marker date="1481325209704" expanded="true" signature="2165:2802" ph="SELECT subca... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,8 +60,38 @@
       <file leaf-file-name="MarkerService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="132">
+              <caret line="23" column="79" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/CategoryService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="24" column="60" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/CategoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdvertsApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AdvertsApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,23 +99,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MarkerRepository.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dao/MarkerRepository.java">
+      <file leaf-file-name="MarkerNotFoundException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="44" column="89" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1481249377223" expanded="true" signature="585:614" ph="SELECT id_m,... marker" />
-                <marker date="1481249377223" expanded="true" signature="1142:1205" ph="INSERT INTO marker... " />
-                <marker date="1481249377223" expanded="true" signature="1256:1324" ph="SELECT id_m marker" />
-                <marker date="1481249377223" expanded="true" signature="2117:2172" ph="DELETE FROM " />
-                <marker date="1481249377223" expanded="true" signature="2815:2916" ph="UPDATE marke... " />
-                <marker date="1481249377223" expanded="true" signature="3521:3641" ph="SELECT id_m,... marker" />
-                <marker date="1481249377223" expanded="true" signature="3601:3641" ph="SELECT id_re... region" />
-                <marker date="1481249377223" expanded="true" signature="4312:4432" ph="SELECT id_m,... marker" />
-                <marker date="1481249377223" expanded="true" signature="5109:5367" ph="SELECT COUNT... marker" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarkerAlreadyExistingException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerAlreadyExistingException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,23 +145,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/components/pages/advert-add/advert-add.controller.js" />
-        <option value="$PROJECT_DIR$/src/main/java/service/PageException.java" />
-        <option value="$PROJECT_DIR$/public/components/pages/home/home.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/create_procedures.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/service/AdvertNotFoundException.java" />
-        <option value="$PROJECT_DIR$/public/components/pages/advert-more/more.html" />
         <option value="$PROJECT_DIR$/public/components/pages/advert-more/advert-more.controller.js" />
         <option value="$PROJECT_DIR$/public/app.module.js" />
         <option value="$PROJECT_DIR$/public/components/pages/profile/profile.html" />
-        <option value="$PROJECT_DIR$/public/components/pages/advert-update/advert-update.controller.js" />
         <option value="$PROJECT_DIR$/src/main/java/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/public/components/pages/profile-edit/profile-edit.controller.js" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AbstractController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/test/java/AdvertServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/TagRepository.java" />
         <option value="$PROJECT_DIR$/src/test/java/TagRepositoryTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/TagException.java" />
@@ -145,32 +162,40 @@
         <option value="$PROJECT_DIR$/public/components/pages/advert-subcategory/advert-subcategory.controller.js" />
         <option value="$PROJECT_DIR$/public/components/factories/ui.factory.js" />
         <option value="$PROJECT_DIR$/src/main/java/dao/AdvertRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/AdvertService.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/ImageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/AdvertServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AdvertController.java" />
         <option value="$PROJECT_DIR$/public/components/pages/profile/profile.controller.js" />
-        <option value="$PROJECT_DIR$/public/components/partials/side_menu.html" />
         <option value="$PROJECT_DIR$/public/components/directives/render.directive.js" />
         <option value="$PROJECT_DIR$/public/components/pages/home/home.controller.js" />
         <option value="$PROJECT_DIR$/public/components/factories/aside.factory.js" />
         <option value="$PROJECT_DIR$/src/main/java/view/AdvertView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/RegionView.java" />
         <option value="$PROJECT_DIR$/public/components/pages/advert-search/advert-search.html" />
-        <option value="$PROJECT_DIR$/public/components/pages/advert-search/advert-search.controller.js" />
         <option value="$PROJECT_DIR$/src/test/java/GeolocationRepositoryTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/GeolocationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/GeolocationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/GeolocationRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/MarkerAlreadyExistingException.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/UserNotFoundException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/test/java/MarkerRepositoryTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/DeleteMarkerException.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/MarkerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/MarkerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/MarkerRepository.java" />
+        <option value="$PROJECT_DIR$/public/components/partials/side_menu.html" />
+        <option value="$PROJECT_DIR$/public/components/pages/advert-update/advert-update.controller.js" />
+        <option value="$PROJECT_DIR$/public/components/pages/advert-search/advert-search.controller.js" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/public/css/styles.css" />
+        <option value="$PROJECT_DIR$/public/components/pages/advert-add/add-advert.html" />
+        <option value="$PROJECT_DIR$/public/components/pages/advert-update/update.html" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" />
+        <option value="$PROJECT_DIR$/src/test/java/CategoryRepositoryTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/CategoryService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/CategoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java" />
       </list>
     </option>
   </component>
@@ -226,7 +251,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -321,14 +346,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Adverts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Adverts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -398,26 +449,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="TagRepositoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.java.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="test.java.TagRepositoryTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Adverts" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="GeolocationRepositoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -446,6 +477,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="test.java.MarkerRepositoryTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Adverts" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="CategoryRepositoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="test.java.CategoryRepositoryTest" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -907,17 +958,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.AdvertsApplication" />
       <item index="1" class="java.lang.String" itemvalue="Application.AdvertRepositoryTest" />
-      <item index="2" class="java.lang.String" itemvalue="Application.TagRepositoryTest" />
-      <item index="3" class="java.lang.String" itemvalue="Application.GeolocationRepositoryTest" />
-      <item index="4" class="java.lang.String" itemvalue="Application.MarkerRepositoryTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.GeolocationRepositoryTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MarkerRepositoryTest" />
+      <item index="4" class="java.lang.String" itemvalue="Application.CategoryRepositoryTest" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Spring Boot.AdvertsApplication" />
-        <item index="1" class="java.lang.String" itemvalue="Application.MarkerRepositoryTest" />
-        <item index="2" class="java.lang.String" itemvalue="Application.GeolocationRepositoryTest" />
-        <item index="3" class="java.lang.String" itemvalue="Application.AdvertRepositoryTest" />
-        <item index="4" class="java.lang.String" itemvalue="Application.TagRepositoryTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.CategoryRepositoryTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MarkerRepositoryTest" />
+        <item index="3" class="java.lang.String" itemvalue="Application.GeolocationRepositoryTest" />
+        <item index="4" class="java.lang.String" itemvalue="Application.AdvertRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -992,7 +1043,10 @@
       <workItem from="1481055588049" duration="686000" />
       <workItem from="1481056407094" duration="186000" />
       <workItem from="1481056624415" duration="1708000" />
-      <workItem from="1481240712560" duration="8715000" />
+      <workItem from="1481240712560" duration="8906000" />
+      <workItem from="1481282922772" duration="3103000" />
+      <workItem from="1481288612659" duration="1216000" />
+      <workItem from="1481308147665" duration="8597000" />
     </task>
     <task id="LOCAL-00001" summary="Registration and authentication is done.">
       <created>1479552634689</created>
@@ -1148,11 +1202,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481249384905</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Marker CRUD (HTTP-api)">
+      <created>1481249545213</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1481249545213</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="327696000" />
+    <option name="totallyTimeSpent" value="340803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1165,7 +1226,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23343849" sideWeight="0.49707174" order="0" side_tool="false" content_ui="tabs" />
@@ -1175,12 +1236,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23028392" sideWeight="0.14348462" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29296234" sideWeight="0.4969743" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3154574" sideWeight="0.85651535" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31861198" sideWeight="0.85651535" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7201309" sideWeight="0.49092284" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3420622" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26427525" sideWeight="0.50731707" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26427525" sideWeight="0.50731707" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18456884" sideWeight="0.49268293" order="0" side_tool="true" content_ui="tabs" />
@@ -1264,76 +1325,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/TagRepositoryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/PageException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/TagException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/home/home.factory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/AdvertRepositoryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="51" column="62" selection-start-line="51" selection-start-column="62" selection-end-line="51" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-category/advert-category.factory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="64" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-category/advert-category.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-215">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-subcategory/advert-subcategory.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/ListElementTagView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1369,13 +1360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/AdvertServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/components/pages/profile/profile.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1387,13 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="835">
           <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/partials/side_menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="42" column="57" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -1439,13 +1416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-search/advert-search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/SubcategoryView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1460,13 +1430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-search/advert-search.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/AdvertView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1478,7 +1441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1490,99 +1452,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/AdvertsApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dao/TagRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding>
-            <marker date="1480802028281" expanded="true" signature="462:854" ph="SELECT tag.i... tag" />
-            <marker date="1480802028281" expanded="true" signature="1519:1550" ph="insert into tag... " />
-            <marker date="1480802028281" expanded="true" signature="2028:2329" ph="SELECT tag.i... tag" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <marker date="1479586786984" expanded="true" signature="636:669" ph="SELECT id_ca... category" />
-            <marker date="1479586786984" expanded="true" signature="1365:1424" ph="SELECT id_sc... subcategory" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4727">
-          <caret line="371" column="23" selection-start-line="371" selection-start-column="23" selection-end-line="371" selection-end-column="23" />
-          <folding>
-            <element signature="method#getAdvertsByUser#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#getAdvertsByTag#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#getAdvertsByCategory#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#getAdvertsBySubcategory#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#getAdvertsByTitle#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#countWithTag#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#countWithCategory#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#countWithSubcategory#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <element signature="method#countWithTitle#0;class#AdvertRepositoryImpl#0" expanded="false" />
-            <marker date="1480867000136" expanded="true" signature="1531:1649" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="1962:2012" ph="insert into advert_tag... " />
-            <marker date="1480867000136" expanded="true" signature="2704:4981" ph="{...}" />
-            <marker date="1480867000136" expanded="true" signature="2772:2942" ph="UPDATE adver... " />
-            <marker date="1480867000136" expanded="true" signature="3011:3133" ph="UPDATE price... " />
-            <marker date="1480867000136" expanded="true" signature="3201:3273" ph="DELETE FROM " />
-            <marker date="1480867000136" expanded="true" signature="3340:3424" ph="INSERT INTO advert_tag... " />
-            <marker date="1480867000136" expanded="true" signature="5937:7941" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="9958:10237" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="11062:11122" ph="delete from " />
-            <marker date="1480867000136" expanded="true" signature="11163:11227" ph="delete from " />
-            <marker date="1480867000136" expanded="true" signature="12052:14104" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="16935:17230" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="18070:18106" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="18619:18714" ph="UPDATE adver... " />
-            <marker date="1480867000136" expanded="true" signature="19221:21281" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="24070:24365" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="25328:27395" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="25328:27467" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="25328:27472" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="25328:27540" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="25328:27704" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="30580:30875" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="31847:33959" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="36835:37130" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="38108:40224" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="43103:43398" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="44361:44464" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46361" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46365" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46383" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46388" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46391" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46495" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="44361:46496" ph="SELECT id_ad... advert" />
-            <marker date="1480867000136" expanded="true" signature="49325:49620" ph="SELECT tag.i... advert_tag" />
-            <marker date="1480867000136" expanded="true" signature="50480:50516" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="50480:50713" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="50480:50718" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="50480:50734" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="50480:50737" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="51310:51586" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="52166:52249" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="52817:52875" ph="SELECT COUNT... " />
-            <marker date="1480867000136" expanded="true" signature="52817:52926" ph="SELECT COUNT... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1590,9 +1463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <marker date="1479589906996" expanded="true" signature="691:732" ph="SELECT id_cu... currency" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1600,7 +1470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-182">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1608,15 +1477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1598">
           <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding>
-            <marker date="1481249395857" expanded="true" signature="628:664" ph="SELECT id_co... country" />
-            <marker date="1481249395857" expanded="true" signature="1333:1413" ph="SELECT id_re... region" />
-            <marker date="1481249395857" expanded="true" signature="2151:2280" ph="SELECT id_re... region" />
-            <marker date="1481249395857" expanded="true" signature="2902:3026" ph="SELECT id_re... region" />
-            <marker date="1481249395857" expanded="true" signature="3628:3688" ph="DELETE FROM " />
-            <marker date="1481249395857" expanded="true" signature="4205:4283" ph="INSERT INTO region... " />
-            <marker date="1481249395857" expanded="true" signature="4334:4407" ph="SELECT id_re... region" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1624,7 +1484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1632,7 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" column="60" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1640,7 +1498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1648,7 +1505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-255">
           <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1656,27 +1512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerAlreadyExistingException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="70" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#365#366#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1684,46 +1519,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AdvertController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MarkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dao/MarkerRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="44" column="89" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
+        <state relative-caret-position="884">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#4971#4972#0" expanded="false" />
+            <element signature="e#5015#5016#0" expanded="false" />
             <marker date="1481249377223" expanded="true" signature="585:614" ph="SELECT id_m,... marker" />
             <marker date="1481249377223" expanded="true" signature="1142:1205" ph="INSERT INTO marker... " />
             <marker date="1481249377223" expanded="true" signature="1256:1324" ph="SELECT id_m marker" />
@@ -1734,6 +1540,223 @@
             <marker date="1481249377223" expanded="true" signature="4312:4432" ph="SELECT id_m,... marker" />
             <marker date="1481249377223" expanded="true" signature="5109:5367" ph="SELECT COUNT... marker" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-search/advert-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-more/more.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/MarkerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-update/advert-update.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-search/advert-search.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/partials/side_menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="25" column="77" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/AdvertServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/AdvertRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+          <folding>
+            <marker date="1481318068802" expanded="true" signature="1531:1649" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="1906:1956" ph="insert into advert_tag... " />
+            <marker date="1481318068802" expanded="true" signature="2716:2886" ph="UPDATE adver... " />
+            <marker date="1481318068802" expanded="true" signature="2955:3077" ph="UPDATE price... " />
+            <marker date="1481318068802" expanded="true" signature="3145:3217" ph="DELETE FROM " />
+            <marker date="1481318068802" expanded="true" signature="3284:3368" ph="INSERT INTO advert_tag... " />
+            <marker date="1481318068802" expanded="true" signature="5881:7885" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="9902:10181" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="11006:11066" ph="delete from " />
+            <marker date="1481318068802" expanded="true" signature="11107:11171" ph="delete from " />
+            <marker date="1481318068802" expanded="true" signature="11996:14048" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="16879:17174" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="18014:18050" ph="SELECT COUNT... " />
+            <marker date="1481318068802" expanded="true" signature="18563:18658" ph="UPDATE adver... " />
+            <marker date="1481318068802" expanded="true" signature="19165:21225" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="24014:24309" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="25272:27648" ph="SELECT adver... advert" />
+            <marker date="1481318068802" expanded="true" signature="30524:30819" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="31791:33903" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="36779:37074" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="38052:40168" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="43047:43342" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="44305:46440" ph="SELECT id_ad... advert" />
+            <marker date="1481318068802" expanded="true" signature="49269:49564" ph="SELECT tag.i... advert_tag" />
+            <marker date="1481318068802" expanded="true" signature="50424:50678" ph="SELECT COUNT... " />
+            <marker date="1481318068802" expanded="true" signature="51254:51530" ph="SELECT COUNT... " />
+            <marker date="1481318068802" expanded="true" signature="52110:52193" ph="SELECT COUNT... " />
+            <marker date="1481318068802" expanded="true" signature="52761:52870" ph="SELECT COUNT... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="308" column="19" selection-start-line="308" selection-start-column="19" selection-end-line="308" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/create_tables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-add/add-advert.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-update/update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/pages/advert-add/advert-add.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CategoryRepositoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="99" selection-start-line="13" selection-start-column="99" selection-end-line="13" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/CategoryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" column="60" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AdvertController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="254" column="69" selection-start-line="254" selection-start-column="35" selection-end-line="254" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="57" column="62" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="62" />
+          <folding>
+            <element signature="e#3483#3484#0" expanded="true" />
+            <element signature="e#3527#3528#0" expanded="true" />
+            <marker date="1481325209704" expanded="true" signature="636:669" ph="SELECT id_ca... category" />
+            <marker date="1481325209704" expanded="true" signature="1365:1424" ph="SELECT id_sc... subcategory" />
+            <marker date="1481325209704" expanded="true" signature="2165:2802" ph="SELECT subca... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerAlreadyExistingException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="23" column="79" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/MarkerNotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AdvertsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
