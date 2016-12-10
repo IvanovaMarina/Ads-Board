@@ -80,6 +80,40 @@ public class TagRepository {
         return tags;
     }
 
+    public List<Tag> getTagsWithMostAdverts() {
+        List<Tag> tags = new ArrayList<>();
+        String query =
+                "SELECT tag.id_tag AS id_tag, tag.name AS name, count(advert_tag.id_tag) AS amount \n" +
+                        "FROM tag\n" +
+                        "LEFT JOIN advert_tag\n" +
+                        "ON tag.id_tag = advert_tag.id_tag\n" +
+                        "GROUP BY(id_tag)\n" +
+                        "HAVING amount >= ALL(\n" +
+                        "\tSELECT count(advert_tag.id_tag)\n" +
+                        "    FROM tag\n" +
+                        "\tLEFT JOIN advert_tag\n" +
+                        "\tON tag.id_tag = advert_tag.id_tag\n" +
+                        "\tGROUP BY(tag.id_tag)\n" +
+                        ")";
+        try {
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Tag tag = new Tag(resultSet.getInt("id_tag"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("amount"));
+                tags.add(tag);
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            throw new DBAccessException(exception.getMessage());
+        }
+        return tags;
+    }
+
     public void setConnection(Connection connection) {
         this.connection = connection;
     }

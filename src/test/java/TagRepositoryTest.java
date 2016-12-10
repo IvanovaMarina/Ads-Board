@@ -3,7 +3,6 @@ package test.java;
 
 import main.java.dao.ConnectionManager;
 import main.java.dao.TagRepository;
-import main.java.entity.Tag;
 
 public class TagRepositoryTest {
 
@@ -22,6 +21,7 @@ public class TagRepositoryTest {
         System.out.println("name: " + insertedTag.getName());
         System.out.println("ads amount: " + insertedTag.getAdvertsAmount());
         */
-        tagRepository.getAllTags().stream().forEach(System.out::println);
+        //tagRepository.getAllTags().stream().forEach(System.out::println);
+        tagRepository.getTagsWithMostAdverts().stream().forEach(System.out::println);
     }
 }

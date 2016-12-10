@@ -25,4 +25,6 @@ public interface AdvertService {
     int getSubcategoryLastPage(int pageSize, Integer subcategoryId);
     int getTitleLastPage(int pageSize, String title);
     List<Tag> getRandomTags(int amount);
+
+    List<Tag> getTagsWithMostAdverts();
 }

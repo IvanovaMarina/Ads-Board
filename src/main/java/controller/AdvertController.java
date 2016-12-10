@@ -2,7 +2,6 @@ package main.java.controller;
 
 
 import main.java.entity.Advert;
-import main.java.entity.Tag;
 import main.java.entity.User;
 import main.java.service.AdvertNotFoundException;
 import main.java.service.AdvertService;
@@ -271,6 +270,15 @@ public class AdvertController extends AbstractController{
                                     .methodOn(AdvertController.class).getAdvertsByTag(1, 2, tag.getName()))
                             .withRel("adverts");
                     tagView.add(advertsLink);
+                    return tagView;
+                }).collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/mostAdvertsTags", method = RequestMethod.GET)
+    public List<TagView> getTagsWithMostAdverts() {
+        return advertService.getTagsWithMostAdverts().stream()
+                .map(tag -> {
+                    TagView tagView = new ListElementTagView(tag);
                     return tagView;
                 }).collect(Collectors.toList());
     }

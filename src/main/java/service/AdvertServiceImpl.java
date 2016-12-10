@@ -235,6 +235,11 @@ public class AdvertServiceImpl implements AdvertService{
         return tags;
     }
 
+    @Override
+    public List<Tag> getTagsWithMostAdverts() {
+        return tagRepository.getTagsWithMostAdverts();
+    }
+
     public void setAdvertRepository(AdvertRepository advertRepository) {
         this.advertRepository = advertRepository;
     }
