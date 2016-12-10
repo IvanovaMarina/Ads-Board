@@ -275,7 +275,8 @@ public class AdvertController extends AbstractController{
     }
 
     @RequestMapping(value = "/mostAdvertsTags", method = RequestMethod.GET)
-    public List<TagView> getTagsWithMostAdverts() {
+    public List<TagView> getTagsWithMostAdverts(@RequestHeader HttpHeaders headers) {
+        adminAuthorize(headers);
         return advertService.getTagsWithMostAdverts().stream()
                 .map(tag -> {
                     TagView tagView = new ListElementTagView(tag);
