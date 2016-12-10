@@ -18,6 +18,9 @@ Restful API. Adverts board.
 [Извлечение случайных тегов](#Извлечение-случайных-тегов)<br>
 [Удаление объявления](#Удаление-объявления)<br>
 [Удаление региона](#Удаление-региона)<br>
+[Удаление маркера](#Удаление-маркера)<br>
+[Добавление маркера](#Добавление-маркера)<br>
+[Изменение маркера](#Изменение-маркера)<br>
 
 
 # Аутентификация пользователя		
@@ -996,7 +999,7 @@ method	DELETE
 comment: only admin have access
 
 Request			
-\-			
+header	Authorization	Basic login:password		
 			
 Response			
 body
@@ -1016,5 +1019,146 @@ Status: 401 Unauthorized
   "exception": "main.java.controller.UnauthorizedUserException",
   "message": "Only admin is allowed to perform this action.",
   "path": "/geolocation/regions/5"
+}
+```
+
+# Удаление маркера		
+url	/markers/{id}		
+method	DELETE		
+comment: only admin have access
+
+Request			
+header	Authorization	Basic login:password				
+			
+Response			
+body	
+```json
+{
+  "name": "New marker1",
+  "id": 7
+}
+```
+errors:
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-10T14:27:39.908+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/markers/10"
+}
+```
+Status: 403 Forbidden
+```json
+{
+  "timestamp": "2016-12-10T14:28:11.335+0000",
+  "status": 403,
+  "error": "Forbidden",
+  "exception": "main.java.service.MarkerNotFoundException",
+  "message": "Marker is not found",
+  "path": "/markers/10"
+}
+```
+Status: 400 Bad request
+```json
+{
+  "timestamp": "2016-12-10T14:29:24.644+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "exception": "main.java.service.DeleteMarkerException",
+  "message": "Adverts with this marker exist.",
+  "path": "/markers/1"
+}
+```
+# Добавление маркера		
+url	/markers	
+method	POST	
+comment: only admin have access
+
+Request			
+header	Authorization	Basic login:password				
+body
+```json
+{
+	"name":"New marker"
+}
+```
+
+Response			
+body	
+```json
+{
+  "name": "New marker",
+  "id": 7
+}
+```
+errors:
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-10T14:20:04.256+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/markers"
+}
+```
+Status: 400 Bad request
+```json
+{
+  "timestamp": "2016-12-10T14:18:29.507+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "exception": "main.java.service.MarkerAlreadyExistingException",
+  "message": "Marker already exists.",
+  "path": "/markers"
+}
+```
+
+# Изменение маркера		
+url	/markers/{id}	
+method	PUT		
+comment: only admin have access
+
+Request			
+header	Authorization	Basic login:password				
+body
+```json
+{
+	"name":"New marker1"
+}
+```
+Response			
+body	
+```json
+{
+  "name": "New marker1",
+  "id": 7
+}
+```
+errors:
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-10T14:36:15.398+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/markers/7"
+}
+```
+Status: 403 Forbidden
+```json
+{
+  "timestamp": "2016-12-10T14:37:52.306+0000",
+  "status": 403,
+  "error": "Forbidden",
+  "exception": "main.java.service.MarkerNotFoundException",
+  "message": "Marker is not found",
+  "path": "/markers/10"
 }
 ```
