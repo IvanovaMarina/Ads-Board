@@ -34,6 +34,9 @@ public class MarkerController extends AbstractController {
                     markerView.add(markerLink);
                     return markerView;
                 })
+                .sorted((m1, m2) -> {
+                    return m1.getMarkerId() - m2.getMarkerId();
+                })
                 .collect(Collectors.toList());
         Resources<MarkerView> markerViews = new Resources<>(markerViewList, markersLink);
         return markerViews;
