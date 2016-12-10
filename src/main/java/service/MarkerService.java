@@ -36,6 +36,10 @@ public class MarkerService {
     }
 
     public Marker update(Marker marker) {
+        Marker existingMarker = markerRepository.getOne(marker.getName());
+        if (existingMarker != null) {
+            throw new MarkerAlreadyExistingException("Marker already exists.");
+        }
         checkExisting(marker.getId());
         return markerRepository.update(marker);
     }

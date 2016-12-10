@@ -101,7 +101,7 @@ public class AdvertRepositoryImpl implements AdvertRepository {
             deleteTagsStatement.setInt(1, advert.getId());
             deleteTagsStatement.execute();
 
-            //TODO: проверит теги на наличие
+
             PreparedStatement tagBindingStatement = connection.prepareStatement(insertTagQuery);
             for(Tag tag: advert.getTags()){
                 tagBindingStatement.setInt(1, advert.getId());
