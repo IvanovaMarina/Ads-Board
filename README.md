@@ -21,7 +21,8 @@ Restful API. Adverts board.
 [Удаление маркера](#Удаление-маркера)<br>
 [Добавление маркера](#Добавление-маркера)<br>
 [Изменение маркера](#Изменение-маркера)<br>
-
+[Извлечение тегов с наибольшим количеством объявлений](#Извлечение-тегов-с-наибольшим-количеством-объявлений)<br>
+[Извлечение подкатегрий с наибольшим количеством объявлений](#Извлечение-подкатегрий-с-наибольшим-количеством-объявлений)<br>
 
 # Аутентификация пользователя		
 url	/users/login		
@@ -1160,5 +1161,75 @@ Status: 403 Forbidden
   "exception": "main.java.service.MarkerNotFoundException",
   "message": "Marker is not found",
   "path": "/markers/10"
+}
+```
+# Извлечение тегов с наибольшим количеством объявлений
+url	/adverts/mostAdvertsTags	
+method	GET		
+comment: only admin have access
+
+Request			
+header	Authorization	Basic login:password	
+
+Response
+body
+```json
+[
+  {
+    "name": "бу",
+    "advertsAmount": 4,
+    "links": [],
+    "id": 12
+  }
+]
+```
+errors:
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-10T15:38:22.948+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/adverts/mostAdvertsTags"
+}
+```
+# Извлечение подкатегрий с наибольшим количеством объявлений
+url	/categories/subcategories/mostAdverts	
+method	GET		
+comment: only admin have access
+
+Request			
+header	Authorization	Basic login:password	
+
+Response
+body
+```json
+{
+  "_embedded": {
+    "subcategories": [
+      {
+        "name": "Грузовики",
+        "id": 2
+      },
+      {
+        "name": "Легковые",
+        "id": 1
+      }
+    ]
+  }
+}
+```
+errors:
+Status: 401 Unauthorized
+```json
+{
+  "timestamp": "2016-12-10T15:46:02.173+0000",
+  "status": 401,
+  "error": "Unauthorized",
+  "exception": "main.java.controller.UnauthorizedUserException",
+  "message": "Wrong authentication data.",
+  "path": "/categories/subcategories/mostAdverts"
 }
 ```
