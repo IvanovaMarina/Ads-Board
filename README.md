@@ -309,7 +309,16 @@ body
   "_embedded": {
     "markers": [
       {
-        "name": "дешево",
+        "name": "Срочно",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/markers/1"
+          }
+        },
+        "id": 1
+      },
+      {
+        "name": "Дешево",
         "_links": {
           "self": {
             "href": "http://localhost:8080/markers/2"
@@ -318,13 +327,13 @@ body
         "id": 2
       },
       {
-        "name": "срочно",
+        "name": "Новинка",
         "_links": {
           "self": {
-            "href": "http://localhost:8080/markers/1"
+            "href": "http://localhost:8080/markers/6"
           }
         },
-        "id": 1
+        "id": 6
       }
     ]
   },
