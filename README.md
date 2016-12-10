@@ -297,7 +297,8 @@ body
 			
 # Извлечение возможных маркеров		
 url	/markers		
-method	GET		
+method	GET
+comment: markers are sorted
 			
 Request			
 \-			
