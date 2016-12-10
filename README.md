@@ -1061,23 +1061,23 @@ Status: 401 Unauthorized
   "path": "/markers/10"
 }
 ```
+Status: 404 Not found
+```json
+{
+  "timestamp": "2016-12-10T21:15:53.193+0000",
+  "status": 404,
+  "error": "Not Found",
+  "exception": "main.java.service.MarkerNotFoundException",
+  "message": "Marker is not found",
+  "path": "/markers/20"
+}
+```
 Status: 403 Forbidden
 ```json
 {
-  "timestamp": "2016-12-10T14:28:11.335+0000",
+  "timestamp": "2016-12-10T21:16:18.232+0000",
   "status": 403,
   "error": "Forbidden",
-  "exception": "main.java.service.MarkerNotFoundException",
-  "message": "Marker is not found",
-  "path": "/markers/10"
-}
-```
-Status: 400 Bad request
-```json
-{
-  "timestamp": "2016-12-10T14:29:24.644+0000",
-  "status": 400,
-  "error": "Bad Request",
   "exception": "main.java.service.DeleteMarkerException",
   "message": "Adverts with this marker exist.",
   "path": "/markers/1"
@@ -1117,12 +1117,12 @@ Status: 401 Unauthorized
   "path": "/markers"
 }
 ```
-Status: 400 Bad request
+Status: 403 Forbidden
 ```json
 {
-  "timestamp": "2016-12-10T14:18:29.507+0000",
-  "status": 400,
-  "error": "Bad Request",
+  "timestamp": "2016-12-10T21:17:16.977+0000",
+  "status": 403,
+  "error": "Forbidden",
   "exception": "main.java.service.MarkerAlreadyExistingException",
   "message": "Marker already exists.",
   "path": "/markers"
@@ -1162,15 +1162,15 @@ Status: 401 Unauthorized
   "path": "/markers/7"
 }
 ```
-Status: 403 Forbidden
+Status: 404 Not Found
 ```json
 {
-  "timestamp": "2016-12-10T14:37:52.306+0000",
-  "status": 403,
-  "error": "Forbidden",
+  "timestamp": "2016-12-10T21:19:12.176+0000",
+  "status": 404,
+  "error": "Not Found",
   "exception": "main.java.service.MarkerNotFoundException",
   "message": "Marker is not found",
-  "path": "/markers/10"
+  "path": "/markers/20"
 }
 ```
 # Извлечение тегов с наибольшим количеством объявлений
