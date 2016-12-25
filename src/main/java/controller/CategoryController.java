@@ -83,6 +83,7 @@ public class CategoryController extends AbstractController {
                     subcategoryView.setSubcategoryId(subcategory.getId());
                     return subcategoryView;
                 })
+                .sorted((c1, c2) -> c1.getSubcategoryId() - c2.getSubcategoryId())
                 .collect(Collectors.toList());
 
         Resources<SubcategoryView> subcategoryResources = new Resources<>(subcategoryList);

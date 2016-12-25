@@ -94,20 +94,6 @@ public class UserServiceImpl implements UserService{
         return true;
     }
 
-    @Override
-    public boolean authorize(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean hasBasicLevelAccess(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean hasAdminLevelAccess(User user) {
-        return false;
-    }
 
     @Override
     public void saveImage(Integer userId, byte[] imageBytes) {
